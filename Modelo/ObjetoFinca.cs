@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgroganaderaMiFincaGui
+namespace ProyectoMiFinca
 {
     /*
      * esta clase es un modelo u objeto de Finca con sus parametros y metodos especificos

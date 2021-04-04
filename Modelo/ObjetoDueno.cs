@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AgroganaderaMiFincaGui
+namespace ProyectoMiFinca
 {
     class ObjetoDueno: ObjetoPersona
     {

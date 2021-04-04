@@ -28,7 +28,6 @@ namespace ProyectoMiFinca
         FRMListaRazas miFRMListaRazas;
         FRMAnimal miFRMAnimal;
         FRMListaAnimales miFRMListaAnimales;
-        FRMClasificacionAnimales miFRMClasificacionAnimales;
         public FRMMenuPrincipal()
         {
             InitializeComponent();
@@ -165,16 +164,5 @@ namespace ProyectoMiFinca
             this.miFRMListaAnimales = new FRMListaAnimales();
             this.miFRMListaAnimales.Show();
         }//fin animalesToolStripMenuItem_Click
-
-        /*
-         * este metodo se acciona al dar click sobre el menu strip mostrar animales
-         * y se encarga de desplegar en una tabla la informacion de los registros
-         * Animales. Ademas, en esta interfaz le usuario pueden clasificar animales segun su sexo
-         */
-        private void verClasificacionDeAnimalesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.miFRMClasificacionAnimales = new FRMClasificacionAnimales();
-            this.miFRMClasificacionAnimales.Show();
-        }//fin verClasificacionDeAnimalesToolStripMenuItem_Click
     }//fin clase parcial MenuPrincipal
 }

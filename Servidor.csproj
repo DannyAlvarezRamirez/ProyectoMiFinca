@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controlador\ControladorFRMAnimal.cs" />
+    <Compile Include="Controlador\ControladorFRMDueno.cs" />
+    <Compile Include="Controlador\ControladorFRMEmpleado.cs" />
+    <Compile Include="Controlador\ControladorFRMFinca.cs" />
+    <Compile Include="Controlador\ControladorFRMRaza.cs" />
     <Compile Include="Modelo\ObjetoAnimal.cs" />
     <Compile Include="Modelo\ObjetoDueno.cs" />
     <Compile Include="Modelo\ObjetoEmpleado.cs" />

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 //de este objeto o clase van a heredar las clases u objetos Dueno y Empleado
-namespace AgroganaderaMiFincaGui
+namespace ProyectoMiFinca
 {
     class ObjetoPersona
     {
