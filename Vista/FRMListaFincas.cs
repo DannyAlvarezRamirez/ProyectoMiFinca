@@ -8,9 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 
-namespace AgroganaderaMiFincaGui
+namespace ProyectoMiFinca
 {
     /*
      * esta clase se encarga de desplegar los registros de fincas

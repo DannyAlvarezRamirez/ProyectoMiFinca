@@ -1,4 +1,4 @@
-﻿namespace AgroganaderaMiFincaGui
+﻿namespace ProyectoMiFinca
 {
     partial class FRMAnimal
     {
@@ -40,12 +40,12 @@
             this.textBoxNombre = new System.Windows.Forms.TextBox();
             this.textBoxPadre = new System.Windows.Forms.TextBox();
             this.textBoxMadre = new System.Windows.Forms.TextBox();
-            this.textBoxFechaNacimiento = new System.Windows.Forms.TextBox();
             this.comboBoxFincas = new System.Windows.Forms.ComboBox();
             this.comboBoxRazas = new System.Windows.Forms.ComboBox();
             this.comboBoxSexos = new System.Windows.Forms.ComboBox();
             this.buttonRegistrar = new System.Windows.Forms.Button();
             this.buttonIrAlMenuPrincipal = new System.Windows.Forms.Button();
+            this.maskedTextBoxFechaNacimiento = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // labelIdentificacion
@@ -150,13 +150,6 @@
             this.textBoxMadre.Size = new System.Drawing.Size(356, 26);
             this.textBoxMadre.TabIndex = 12;
             // 
-            // textBoxFechaNacimiento
-            // 
-            this.textBoxFechaNacimiento.Location = new System.Drawing.Point(155, 212);
-            this.textBoxFechaNacimiento.Name = "textBoxFechaNacimiento";
-            this.textBoxFechaNacimiento.Size = new System.Drawing.Size(273, 26);
-            this.textBoxFechaNacimiento.TabIndex = 13;
-            // 
             // comboBoxFincas
             // 
             this.comboBoxFincas.AllowDrop = true;
@@ -209,18 +202,27 @@
             this.buttonIrAlMenuPrincipal.UseVisualStyleBackColor = true;
             this.buttonIrAlMenuPrincipal.Click += new System.EventHandler(this.buttonIrAlMenuPrincipal_Click);
             // 
+            // maskedTextBoxFechaNacimiento
+            // 
+            this.maskedTextBoxFechaNacimiento.Location = new System.Drawing.Point(156, 218);
+            this.maskedTextBoxFechaNacimiento.Mask = "0000/00/00";
+            this.maskedTextBoxFechaNacimiento.Name = "maskedTextBoxFechaNacimiento";
+            this.maskedTextBoxFechaNacimiento.Size = new System.Drawing.Size(272, 26);
+            this.maskedTextBoxFechaNacimiento.TabIndex = 19;
+            this.maskedTextBoxFechaNacimiento.ValidatingType = typeof(System.DateTime);
+            // 
             // FRMAnimal
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.maskedTextBoxFechaNacimiento);
             this.Controls.Add(this.buttonIrAlMenuPrincipal);
             this.Controls.Add(this.buttonRegistrar);
             this.Controls.Add(this.comboBoxSexos);
             this.Controls.Add(this.comboBoxRazas);
             this.Controls.Add(this.comboBoxFincas);
-            this.Controls.Add(this.textBoxFechaNacimiento);
             this.Controls.Add(this.textBoxMadre);
             this.Controls.Add(this.textBoxPadre);
             this.Controls.Add(this.textBoxNombre);
@@ -255,11 +257,11 @@
         private System.Windows.Forms.TextBox textBoxNombre;
         private System.Windows.Forms.TextBox textBoxPadre;
         private System.Windows.Forms.TextBox textBoxMadre;
-        private System.Windows.Forms.TextBox textBoxFechaNacimiento;
         private System.Windows.Forms.ComboBox comboBoxFincas;
         private System.Windows.Forms.ComboBox comboBoxRazas;
         private System.Windows.Forms.ComboBox comboBoxSexos;
         private System.Windows.Forms.Button buttonRegistrar;
         private System.Windows.Forms.Button buttonIrAlMenuPrincipal;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxFechaNacimiento;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace AgroganaderaMiFincaGui
+﻿namespace ProyectoMiFinca
 {
     partial class FRMListaFincas
     {

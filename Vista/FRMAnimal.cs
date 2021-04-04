@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AgroganaderaMiFincaGui
+namespace ProyectoMiFinca
 {
     /*
      * esta clase se encarga de desplegar la interfaz de usuario para 
@@ -57,12 +57,12 @@ namespace AgroganaderaMiFincaGui
             {
                 if (this.maskedTextBoxIdentificacion.Text != "" && this.textBoxNombre.Text != "" &&
                                 this.comboBoxFincas.Text != "" && this.comboBoxRazas.Text != "" &&
-                                this.textBoxFechaNacimiento.Text != "" && this.comboBoxSexos.Text != "" &&
+                                this.maskedTextBoxFechaNacimiento.Text != "" && this.comboBoxSexos.Text != "" &&
                                 this.textBoxMadre.Text != "" && this.textBoxPadre.Text != "")
                 {
                     MessageBox.Show(ControladorFRMAnimal.RegistrarAnimal(ControladorFRMAnimal.GetObjetoAnimal(
                         Convert.ToInt32(this.maskedTextBoxIdentificacion.Text), this.comboBoxSexos.Text, 
-                        this.textBoxMadre.Text, this.textBoxPadre.Text, this.textBoxNombre.Text, this.textBoxFechaNacimiento.Text,
+                        this.textBoxMadre.Text, this.textBoxPadre.Text, this.textBoxNombre.Text, this.maskedTextBoxFechaNacimiento.Text,
                         ControladorFRMFinca.BuscarFinca(Convert.ToInt32(this.comboBoxFincas.SelectedItem.ToString())),
                         ControladorFRMRaza.BuscarRaza(Convert.ToInt32(this.comboBoxRazas.SelectedItem.ToString())))));
                     //estado inicial
@@ -90,7 +90,7 @@ namespace AgroganaderaMiFincaGui
             this.textBoxNombre.ResetText();
             this.comboBoxFincas.SelectedIndex = 0;
             this.comboBoxRazas.SelectedIndex = 0;
-            this.textBoxFechaNacimiento.ResetText();
+            this.maskedTextBoxFechaNacimiento.ResetText();
             this.comboBoxSexos.SelectedIndex = 0;
             this.textBoxMadre.ResetText();
             this.textBoxPadre.ResetText();
