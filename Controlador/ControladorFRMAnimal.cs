@@ -65,7 +65,7 @@ namespace ProyectoMiFinca
         /*
          * GetObjetoAnimal = devuelve un objeto Animal con sus valores respectivos
          */
-        public static ObjetoAnimal GetObjetoAnimal(int identificacionAnimal, string sexoAnimal, string madreAnimal, string padreAnimal, string nombreAnimal,
+        public static ObjetoAnimal GetObjetoAnimal(int identificacionAnimal, string sexoAnimal, int madreAnimal, int padreAnimal, string nombreAnimal,
             string fechaNacimientoAnimal, ObjetoFinca objFincaAnimal, ObjetoRaza objRazaAnimal)
         {
             miObjetoAnimal = new ObjetoAnimal(identificacionAnimal, sexoAnimal, madreAnimal, padreAnimal, nombreAnimal,

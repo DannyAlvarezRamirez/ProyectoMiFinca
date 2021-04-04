@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controlador\ConexionServidorBBDD.cs" />
     <Compile Include="Controlador\ControladorFRMAnimal.cs" />
     <Compile Include="Controlador\ControladorFRMDueno.cs" />
     <Compile Include="Controlador\ControladorFRMEmpleado.cs" />

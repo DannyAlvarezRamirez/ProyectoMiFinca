@@ -64,10 +64,10 @@ namespace ProyectoMiFinca
          * GetObjetoEmpleado = devuelve un objeto Empleado con sus valores respectivos
          */
         public static ObjetoEmpleado GetObjetoEmpleado(int identificacionPersona, string nombrePersona, string primerApellido, string segundoApellido,
-            double salarioEmpleado)
+            double salarioEmpleado, string usuario, string contrasena, int estado)
         {
             miObjetoEmpleado = new ObjetoEmpleado(identificacionPersona, nombrePersona, primerApellido, segundoApellido,
-                salarioEmpleado);
+                salarioEmpleado, usuario, contrasena, estado);
             return miObjetoEmpleado;
         }//fin GetLlenarObjetoEmpleado
 
