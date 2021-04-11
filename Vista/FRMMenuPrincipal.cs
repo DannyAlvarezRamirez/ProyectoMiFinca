@@ -53,7 +53,7 @@ namespace ProyectoMiFinca
 
             if (respuesta == DialogResult.OK)
             {
-                System.Environment.Exit(0);
+                this.Hide();
             }//fin if cerrar
             else
             {

@@ -46,16 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FRM_PrincipalCliente.cs">
+    <Compile Include="Modelo\ObjetoPersona.cs" />
+    <Compile Include="Vista\FRM_PrincipalCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FRM_PrincipalCliente.Designer.cs">
+    <Compile Include="Vista\FRM_PrincipalCliente.Designer.cs">
       <DependentUpon>FRM_PrincipalCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Modelo\ObjetoEmpleado.cs" />
     <Compile Include="Modelo\ObjetoVacunas.cs" />
     <Compile Include="Modelo\ObjetoVacunaAnimal.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Controlador\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -79,10 +80,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controlador\" />
-    <Folder Include="Vista\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Servidor.csproj">
       <Project>{38fd1450-8bb7-4c2a-8269-12feff5f81cb}</Project>

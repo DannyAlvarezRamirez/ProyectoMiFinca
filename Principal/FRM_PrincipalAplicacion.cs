@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Principal
 {
     /*
@@ -48,6 +49,25 @@ namespace Principal
             }//fin else cerrar
         }//fin cerrarFormulario
 
+        /*
+         * este metodo se encarga de desplegar el proyecto Servidor con su modulo 
+         * principal
+         */
+        private void buttonServidor_Click(object sender, EventArgs e)
+        {
+            ProyectoMiFinca.FRMMenuPrincipal fRMMenuPrincipal = new ProyectoMiFinca.FRMMenuPrincipal();
+            fRMMenuPrincipal.Show();
+        }//fin buttonServidor_Click
+
+        /*
+         * este metodo se encarga de desplegar el proyecto Cliente con su modulo 
+         * principal
+         */
+        private void buttonCliente_Click(object sender, EventArgs e)
+        {
+            Cliente.FRM_PrincipalCliente fRM_PrincipalCliente = new Cliente.FRM_PrincipalCliente();
+            fRM_PrincipalCliente.Show();
+        }//fin buttonCliente_Click
 
     }//fin clase FRM_PrincipalAplicacion
 }

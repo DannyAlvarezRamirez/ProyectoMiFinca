@@ -40,6 +40,7 @@
             this.buttonServidor.TabIndex = 0;
             this.buttonServidor.Text = "Servidor";
             this.buttonServidor.UseVisualStyleBackColor = true;
+            this.buttonServidor.Click += new System.EventHandler(this.buttonServidor_Click);
             // 
             // buttonCliente
             // 
@@ -49,6 +50,7 @@
             this.buttonCliente.TabIndex = 1;
             this.buttonCliente.Text = "Cliente";
             this.buttonCliente.UseVisualStyleBackColor = true;
+            this.buttonCliente.Click += new System.EventHandler(this.buttonCliente_Click);
             // 
             // FRM_PrincipalAplicacion
             // 
