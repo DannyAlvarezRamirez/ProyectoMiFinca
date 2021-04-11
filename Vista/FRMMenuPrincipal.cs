@@ -39,8 +39,8 @@ namespace ProyectoMiFinca
         private void FRMMenuPrincipal_Load(object sender, EventArgs e)
         {
             this.FormClosing += new FormClosingEventHandler(cerrarFormulario);
-            
-        }//Finca_Load
+
+        }//fin FRMMenuPrincipal_Load
 
         /*
          * este metodo se encarga de cerrar o no el formulario actual 

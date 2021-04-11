@@ -48,7 +48,6 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.registrarToolStripMenuItem,
@@ -75,35 +74,35 @@
             // fincaToolStripMenuItem
             // 
             this.fincaToolStripMenuItem.Name = "fincaToolStripMenuItem";
-            this.fincaToolStripMenuItem.Size = new System.Drawing.Size(258, 34);
+            this.fincaToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.fincaToolStripMenuItem.Text = "Fincas";
             this.fincaToolStripMenuItem.Click += new System.EventHandler(this.fincaToolStripMenuItem_Click);
             // 
             // duenoToolStripMenuItem
             // 
             this.duenoToolStripMenuItem.Name = "duenoToolStripMenuItem";
-            this.duenoToolStripMenuItem.Size = new System.Drawing.Size(258, 34);
+            this.duenoToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.duenoToolStripMenuItem.Text = "Dueños";
             this.duenoToolStripMenuItem.Click += new System.EventHandler(this.duenoToolStripMenuItem_Click);
             // 
             // empleadoToolStripMenuItem
             // 
             this.empleadoToolStripMenuItem.Name = "empleadoToolStripMenuItem";
-            this.empleadoToolStripMenuItem.Size = new System.Drawing.Size(258, 34);
+            this.empleadoToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.empleadoToolStripMenuItem.Text = "Empleados";
             this.empleadoToolStripMenuItem.Click += new System.EventHandler(this.empleadoToolStripMenuItem_Click);
             // 
             // razaDeAnimalToolStripMenuItem
             // 
             this.razaDeAnimalToolStripMenuItem.Name = "razaDeAnimalToolStripMenuItem";
-            this.razaDeAnimalToolStripMenuItem.Size = new System.Drawing.Size(258, 34);
+            this.razaDeAnimalToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.razaDeAnimalToolStripMenuItem.Text = "Razas de animales";
             this.razaDeAnimalToolStripMenuItem.Click += new System.EventHandler(this.razaDeAnimalToolStripMenuItem_Click);
             // 
             // animalToolStripMenuItem
             // 
             this.animalToolStripMenuItem.Name = "animalToolStripMenuItem";
-            this.animalToolStripMenuItem.Size = new System.Drawing.Size(258, 34);
+            this.animalToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.animalToolStripMenuItem.Text = "Animales";
             this.animalToolStripMenuItem.Click += new System.EventHandler(this.animalToolStripMenuItem_Click);
             // 
@@ -167,7 +166,6 @@
             this.verClasificacionDeAnimalesToolStripMenuItem.Name = "verClasificacionDeAnimalesToolStripMenuItem";
             this.verClasificacionDeAnimalesToolStripMenuItem.Size = new System.Drawing.Size(342, 34);
             this.verClasificacionDeAnimalesToolStripMenuItem.Text = "Ver Clasificacion de Animales";
-            this.verClasificacionDeAnimalesToolStripMenuItem.Click += new System.EventHandler(this.verClasificacionDeAnimalesToolStripMenuItem_Click);
             // 
             // FRMMenuPrincipal
             // 
@@ -177,7 +175,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FRMMenuPrincipal";
-            this.Text = "Menu Principal Agroganadera Mi Finca";
+            this.Text = "Servidor";
             this.Load += new System.EventHandler(this.FRMMenuPrincipal_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

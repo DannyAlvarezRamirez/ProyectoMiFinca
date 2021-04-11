@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3734180E-A75B-46B4-A3E1-BCE01E6FFE7A}</ProjectGuid>
+    <ProjectGuid>{8B42674F-B653-4296-AC40-87B31095EFF0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Cliente</RootNamespace>
-    <AssemblyName>Cliente</AssemblyName>
+    <RootNamespace>Principal</RootNamespace>
+    <AssemblyName>Principal</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,17 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FRM_PrincipalCliente.cs">
+    <Compile Include="FRM_PrincipalAplicacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FRM_PrincipalCliente.Designer.cs">
-      <DependentUpon>FRM_PrincipalCliente.cs</DependentUpon>
+    <Compile Include="FRM_PrincipalAplicacion.Designer.cs">
+      <DependentUpon>FRM_PrincipalAplicacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modelo\ObjetoEmpleado.cs" />
-    <Compile Include="Modelo\ObjetoVacunas.cs" />
-    <Compile Include="Modelo\ObjetoVacunaAnimal.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FRM_PrincipalAplicacion.resx">
+      <DependentUpon>FRM_PrincipalAplicacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -80,10 +80,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controlador\" />
-    <Folder Include="Vista\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Cliente\Cliente.csproj">
+      <Project>{3734180e-a75b-46b4-a3e1-bce01e6ffe7a}</Project>
+      <Name>Cliente</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Servidor.csproj">
       <Project>{38fd1450-8bb7-4c2a-8269-12feff5f81cb}</Project>
       <Name>Servidor</Name>

@@ -40,6 +40,13 @@
             this.textBoxPrimerApellido = new System.Windows.Forms.TextBox();
             this.buttonRegistrar = new System.Windows.Forms.Button();
             this.buttonIrAlMenuPrincipal = new System.Windows.Forms.Button();
+            this.labelUsuario = new System.Windows.Forms.Label();
+            this.labelContrasena = new System.Windows.Forms.Label();
+            this.labelEstado = new System.Windows.Forms.Label();
+            this.textBoxUsuario = new System.Windows.Forms.TextBox();
+            this.textBoxContrasena = new System.Windows.Forms.TextBox();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.comboBoxEstado = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // labelIdentificacion
@@ -146,11 +153,68 @@
             this.buttonIrAlMenuPrincipal.UseVisualStyleBackColor = true;
             this.buttonIrAlMenuPrincipal.Click += new System.EventHandler(this.buttonIrAlMenuPrincipal_Click);
             // 
+            // labelUsuario
+            // 
+            this.labelUsuario.AutoSize = true;
+            this.labelUsuario.Location = new System.Drawing.Point(13, 230);
+            this.labelUsuario.Name = "labelUsuario";
+            this.labelUsuario.Size = new System.Drawing.Size(64, 20);
+            this.labelUsuario.TabIndex = 12;
+            this.labelUsuario.Text = "Usuario";
+            // 
+            // labelContrasena
+            // 
+            this.labelContrasena.AutoSize = true;
+            this.labelContrasena.Location = new System.Drawing.Point(12, 266);
+            this.labelContrasena.Name = "labelContrasena";
+            this.labelContrasena.Size = new System.Drawing.Size(92, 20);
+            this.labelContrasena.TabIndex = 13;
+            this.labelContrasena.Text = "Contrasena";
+            // 
+            // labelEstado
+            // 
+            this.labelEstado.AutoSize = true;
+            this.labelEstado.Location = new System.Drawing.Point(13, 302);
+            this.labelEstado.Name = "labelEstado";
+            this.labelEstado.Size = new System.Drawing.Size(60, 20);
+            this.labelEstado.TabIndex = 14;
+            this.labelEstado.Text = "Estado";
+            // 
+            // textBoxUsuario
+            // 
+            this.textBoxUsuario.Location = new System.Drawing.Point(84, 223);
+            this.textBoxUsuario.Name = "textBoxUsuario";
+            this.textBoxUsuario.Size = new System.Drawing.Size(360, 26);
+            this.textBoxUsuario.TabIndex = 15;
+            // 
+            // textBoxContrasena
+            // 
+            this.textBoxContrasena.Location = new System.Drawing.Point(110, 260);
+            this.textBoxContrasena.Name = "textBoxContrasena";
+            this.textBoxContrasena.Size = new System.Drawing.Size(334, 26);
+            this.textBoxContrasena.TabIndex = 17;
+            // 
+            // comboBoxEstado
+            // 
+            this.comboBoxEstado.FormattingEnabled = true;
+            this.comboBoxEstado.Items.AddRange(new object[] {
+            "1"});
+            this.comboBoxEstado.Location = new System.Drawing.Point(80, 293);
+            this.comboBoxEstado.Name = "comboBoxEstado";
+            this.comboBoxEstado.Size = new System.Drawing.Size(364, 28);
+            this.comboBoxEstado.TabIndex = 18;
+            // 
             // FRMEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBoxEstado);
+            this.Controls.Add(this.textBoxContrasena);
+            this.Controls.Add(this.textBoxUsuario);
+            this.Controls.Add(this.labelEstado);
+            this.Controls.Add(this.labelContrasena);
+            this.Controls.Add(this.labelUsuario);
             this.Controls.Add(this.buttonIrAlMenuPrincipal);
             this.Controls.Add(this.buttonRegistrar);
             this.Controls.Add(this.textBoxPrimerApellido);
@@ -185,5 +249,12 @@
         private System.Windows.Forms.TextBox textBoxPrimerApellido;
         private System.Windows.Forms.Button buttonRegistrar;
         private System.Windows.Forms.Button buttonIrAlMenuPrincipal;
+        private System.Windows.Forms.Label labelUsuario;
+        private System.Windows.Forms.Label labelContrasena;
+        private System.Windows.Forms.Label labelEstado;
+        private System.Windows.Forms.TextBox textBoxUsuario;
+        private System.Windows.Forms.TextBox textBoxContrasena;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ComboBox comboBoxEstado;
     }
 }

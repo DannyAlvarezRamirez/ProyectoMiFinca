@@ -8,7 +8,7 @@ namespace ProyectoMiFinca
     class ObjetoAnimal
     {
         //atributos
-        private int intIdentificacionAnimal, strMadreAnimal, strPadreAnimal;
+        private int intIdentificacionAnimal, intMadreAnimal, intPadreAnimal;
         private string strSexoAnimal, strNombreAnimal, strFechaNacimientoAnimal;
         private ObjetoFinca objFincaAnimal;
         private ObjetoRaza objRazaAnimal;
@@ -18,8 +18,8 @@ namespace ProyectoMiFinca
         {
             this.intIdentificacionAnimal = 0;
             this.strSexoAnimal = "";
-            this.strMadreAnimal = 0;
-            this.strPadreAnimal = 0;
+            this.intMadreAnimal = 0;
+            this.intPadreAnimal = 0;
             this.strNombreAnimal = "";
             this.strFechaNacimientoAnimal = "";
             this.objFincaAnimal = null;
@@ -30,8 +30,8 @@ namespace ProyectoMiFinca
         {
             this.intIdentificacionAnimal = identificacionAnimal;
             this.strSexoAnimal = sexoAnimal;
-            this.strMadreAnimal = madreAnimal;
-            this.strPadreAnimal = padreAnimal;
+            this.intMadreAnimal = madreAnimal;
+            this.intPadreAnimal = padreAnimal;
             this.strNombreAnimal =nombreAnimal;
             this.strFechaNacimientoAnimal = fechaNacimientoAnimal;
             this.objFincaAnimal = objFincaAnimal;
@@ -68,11 +68,11 @@ namespace ProyectoMiFinca
         {
             set
             {
-                this.strMadreAnimal = value;
+                this.intMadreAnimal = value;
             }
             get
             {
-                return this.strMadreAnimal;
+                return this.intMadreAnimal;
             }
         }//fin MadreAnimal
         //PadreAnimal
@@ -80,11 +80,11 @@ namespace ProyectoMiFinca
         {
             set
             {
-                this.strPadreAnimal = value;
+                this.intPadreAnimal = value;
             }
             get
             {
-                return this.strPadreAnimal;
+                return this.intPadreAnimal;
             }
         }//fin PadreAnimal
         //NombreAnimal

@@ -59,6 +59,8 @@
     <Compile Include="Modelo\ObjetoPersona.cs" />
     <Compile Include="Modelo\ObjetoRaza.cs" />
     <Compile Include="Controlador\Program.cs" />
+    <Compile Include="Modelo\ObjetoVacunaAnimal.cs" />
+    <Compile Include="Modelo\ObjetoVacunas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vista\FRMAnimal.cs">
       <SubType>Form</SubType>

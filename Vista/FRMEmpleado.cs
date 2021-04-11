@@ -19,6 +19,7 @@ namespace ProyectoMiFinca
         public FRMEmpleado()
         {
             InitializeComponent();
+            this.EstadoInicial();
         }//fin constructor
 
         /*
@@ -36,7 +37,8 @@ namespace ProyectoMiFinca
                     MessageBox.Show(ControladorFRMEmpleado.RegistrarEmpleado(ControladorFRMEmpleado.GetObjetoEmpleado(
                         Convert.ToInt32(this.maskedTextBoxIdentificacion.Text), this.textBoxNombre.Text,
                         this.textBoxPrimerApellido.Text, this.textBoxSegundoApellido.Text,
-                        Convert.ToInt32(this.maskedTextBoxSalario.Text))));
+                        Convert.ToInt32(this.maskedTextBoxSalario.Text), this.textBoxUsuario.Text, this.textBoxContrasena.Text,
+                        Convert.ToInt32(this.comboBoxEstado.SelectedItem.ToString()))));
                     //estado inicial
                     this.EstadoInicial();
                 }//fin if
@@ -63,6 +65,9 @@ namespace ProyectoMiFinca
             this.textBoxNombre.ResetText();
             this.textBoxPrimerApellido.ResetText();
             this.textBoxSegundoApellido.ResetText();
+            this.textBoxUsuario.ResetText();
+            this.textBoxContrasena.ResetText();
+            this.comboBoxEstado.SelectedItem = 0;
         }//fin EstadoInicial
 
         /*
