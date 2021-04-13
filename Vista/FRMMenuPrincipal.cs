@@ -28,6 +28,8 @@ namespace ProyectoMiFinca
         FRMListaRazas miFRMListaRazas;
         FRMAnimal miFRMAnimal;
         FRMListaAnimales miFRMListaAnimales;
+        FRMVacuna miFRMVacuna;
+        FRMListaVacunas miFRMListaVacunas;
         public FRMMenuPrincipal()
         {
             InitializeComponent();
@@ -164,5 +166,25 @@ namespace ProyectoMiFinca
             this.miFRMListaAnimales = new FRMListaAnimales();
             this.miFRMListaAnimales.Show();
         }//fin animalesToolStripMenuItem_Click
+
+        /*
+         * este metodo se acciona al dar click y despliega un nuevo formulario = Registrar Vacuna
+         */
+        private void vacunaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //instancia de formulario Registrar Vacuna
+            this.miFRMVacuna = new FRMVacuna();
+            this.miFRMVacuna.Show();
+        }//fin vacunaToolStripMenuItem_Click
+        /*
+         * este metodo se acciona al dar click sobre el menu strip mostrar vacunas
+         * y se encarga de desplegar en una tabla la informacion de los registros
+         * Vacunas
+         */
+        private void vacunasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.miFRMListaVacunas = new FRMListaVacunas();
+            this.miFRMListaVacunas.Show();
+        }//fin vacunasToolStripMenuItem_Click
     }//fin clase parcial MenuPrincipal
 }

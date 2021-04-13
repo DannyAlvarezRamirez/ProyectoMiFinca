@@ -41,18 +41,18 @@
             this.empleadosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.razasDeAnimalesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.animalesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.clasificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verClasificacionDeAnimalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vacunaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vacunasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.registrarToolStripMenuItem,
-            this.mostrarToolStripMenuItem,
-            this.clasificarToolStripMenuItem});
+            this.mostrarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 33);
@@ -66,7 +66,8 @@
             this.duenoToolStripMenuItem,
             this.empleadoToolStripMenuItem,
             this.razaDeAnimalToolStripMenuItem,
-            this.animalToolStripMenuItem});
+            this.animalToolStripMenuItem,
+            this.vacunaToolStripMenuItem});
             this.registrarToolStripMenuItem.Name = "registrarToolStripMenuItem";
             this.registrarToolStripMenuItem.Size = new System.Drawing.Size(97, 29);
             this.registrarToolStripMenuItem.Text = "Registrar";
@@ -113,7 +114,8 @@
             this.duenosToolStripMenuItem,
             this.empleadosToolStripMenuItem1,
             this.razasDeAnimalesToolStripMenuItem1,
-            this.animalesToolStripMenuItem1});
+            this.animalesToolStripMenuItem1,
+            this.vacunasToolStripMenuItem});
             this.mostrarToolStripMenuItem.Name = "mostrarToolStripMenuItem";
             this.mostrarToolStripMenuItem.Size = new System.Drawing.Size(173, 29);
             this.mostrarToolStripMenuItem.Text = "Mostrar la Lista de";
@@ -153,19 +155,19 @@
             this.animalesToolStripMenuItem1.Text = "Animales";
             this.animalesToolStripMenuItem1.Click += new System.EventHandler(this.animalesToolStripMenuItem_Click);
             // 
-            // clasificarToolStripMenuItem
+            // vacunaToolStripMenuItem
             // 
-            this.clasificarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.verClasificacionDeAnimalesToolStripMenuItem});
-            this.clasificarToolStripMenuItem.Name = "clasificarToolStripMenuItem";
-            this.clasificarToolStripMenuItem.Size = new System.Drawing.Size(97, 29);
-            this.clasificarToolStripMenuItem.Text = "Clasificar";
+            this.vacunaToolStripMenuItem.Name = "vacunaToolStripMenuItem";
+            this.vacunaToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.vacunaToolStripMenuItem.Text = "Vacunas";
+            this.vacunaToolStripMenuItem.Click += new System.EventHandler(this.vacunaToolStripMenuItem_Click);
             // 
-            // verClasificacionDeAnimalesToolStripMenuItem
+            // vacunasToolStripMenuItem
             // 
-            this.verClasificacionDeAnimalesToolStripMenuItem.Name = "verClasificacionDeAnimalesToolStripMenuItem";
-            this.verClasificacionDeAnimalesToolStripMenuItem.Size = new System.Drawing.Size(342, 34);
-            this.verClasificacionDeAnimalesToolStripMenuItem.Text = "Ver Clasificacion de Animales";
+            this.vacunasToolStripMenuItem.Name = "vacunasToolStripMenuItem";
+            this.vacunasToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.vacunasToolStripMenuItem.Text = "Vacunas";
+            this.vacunasToolStripMenuItem.Click += new System.EventHandler(this.vacunasToolStripMenuItem_Click);
             // 
             // FRMMenuPrincipal
             // 
@@ -191,7 +193,6 @@
         private System.Windows.Forms.ToolStripMenuItem fincaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem duenoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mostrarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clasificarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem empleadoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem razaDeAnimalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem animalToolStripMenuItem;
@@ -200,7 +201,8 @@
         private System.Windows.Forms.ToolStripMenuItem empleadosToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem razasDeAnimalesToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem animalesToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem verClasificacionDeAnimalesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vacunaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vacunasToolStripMenuItem;
     }
 }
 

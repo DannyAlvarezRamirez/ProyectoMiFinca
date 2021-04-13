@@ -52,6 +52,7 @@
     <Compile Include="Controlador\ControladorFRMEmpleado.cs" />
     <Compile Include="Controlador\ControladorFRMFinca.cs" />
     <Compile Include="Controlador\ControladorFRMRaza.cs" />
+    <Compile Include="Controlador\ControladorFRMVacuna.cs" />
     <Compile Include="Modelo\ObjetoAnimal.cs" />
     <Compile Include="Modelo\ObjetoDueno.cs" />
     <Compile Include="Modelo\ObjetoEmpleado.cs" />
@@ -116,6 +117,12 @@
     <Compile Include="Vista\FRMListaRazas.designer.cs">
       <DependentUpon>FRMListaRazas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vista\FRMListaVacunas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\FRMListaVacunas.Designer.cs">
+      <DependentUpon>FRMListaVacunas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vista\FRMMenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +134,12 @@
     </Compile>
     <Compile Include="Vista\FRMRaza.designer.cs">
       <DependentUpon>FRMRaza.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\FRMVacuna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\FRMVacuna.Designer.cs">
+      <DependentUpon>FRMVacuna.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -165,11 +178,17 @@
     <EmbeddedResource Include="Vista\FRMListaRazas.resx">
       <DependentUpon>FRMListaRazas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vista\FRMListaVacunas.resx">
+      <DependentUpon>FRMListaVacunas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vista\FRMMenuPrincipal.resx">
       <DependentUpon>FRMMenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\FRMRaza.resx">
       <DependentUpon>FRMRaza.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\FRMVacuna.resx">
+      <DependentUpon>FRMVacuna.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
