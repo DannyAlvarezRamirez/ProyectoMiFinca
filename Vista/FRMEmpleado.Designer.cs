@@ -196,6 +196,7 @@
             // 
             // comboBoxEstado
             // 
+            this.comboBoxEstado.AllowDrop = true;
             this.comboBoxEstado.FormattingEnabled = true;
             this.comboBoxEstado.Items.AddRange(new object[] {
             "1"});

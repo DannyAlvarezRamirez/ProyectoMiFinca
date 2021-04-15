@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
 
 namespace ProyectoMiFinca
 {
@@ -30,10 +33,117 @@ namespace ProyectoMiFinca
         FRMListaAnimales miFRMListaAnimales;
         FRMVacuna miFRMVacuna;
         FRMListaVacunas miFRMListaVacunas;
+        //////////////////////////////////////
+        //variables de comunicacion TCP del servidor
+        TcpListener miTcpListener;
+        Thread miThreadSubprocesoEscuchaCliente;
+        bool miServidorEstaEscuchando;
+        //variable delegado
+        private delegate void cantidadClientesConectados(string salida);
+        cantidadClientesConectados miCantidadClientesConectados;
+
+        //constructor
         public FRMMenuPrincipal()
         {
             InitializeComponent();
+            this.labelIniciarApagarServidor.ForeColor = Color.Red;
+            this.miCantidadClientesConectados = new cantidadClientesConectados(CantidadClientesConectados);
         }//fin constructor
+        
+        /*
+         * este metodo se encarga de establecer la conexion con el Cliente
+         */
+        private void ComunicacionConCliente(Object paqueteCliente)
+        {
+            TcpClient miTcpCliente = (TcpClient)paqueteCliente;//paquete que envia el Cliente
+            NetworkStream miNetworkStreamCliente = miTcpCliente.GetStream();
+            ASCIIEncoding miASCIIEncodingCodificacion = new ASCIIEncoding();//para codificar los datos que entran por parametro
+            byte[] miBuffer = new byte[4096];
+            int cantidadDeBytes = 0;
+
+            //ciclo para determinar si hay clientes haciendo consultas
+            while (miServidorEstaEscuchando)
+            {
+                try
+                {
+                    cantidadDeBytes = miNetworkStreamCliente.Read(miBuffer, 0, miBuffer.Length);
+                }//fin try
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ha ocurrido un error en la conexion con el Servidor." +
+                        "/nDetalle del error: " + ex.Message);
+                }//fin catch
+
+                if (cantidadDeBytes == 0)
+                {
+                    MessageBox.Show("No hay paquetes.");
+                }//fin if
+            }//fin while
+
+            //formateo del paquete
+            string mensaje = miASCIIEncodingCodificacion.GetString(miBuffer, 0, cantidadDeBytes);
+            string mensajeFormateado = string.Format("El cliente {0} se ha conectado.", mensaje);
+            MessageBox.Show(mensajeFormateado);
+
+            //modificacion del textbox mediante el delegado
+            this.textBoxCantidadClientesConectados.Invoke(this.miCantidadClientesConectados, new object[] { "Se ha conectado: " + mensaje});
+            miTcpCliente.Close();
+        }//fin 
+
+        /*
+         * este metodo se encarga de escuchar al cliente
+         */
+        private void EscucharCliente()
+        {
+            miTcpListener.Start();
+            //verificar que servidor esta iniciado
+            while (miServidorEstaEscuchando)
+            {
+                TcpClient tcpClient = miTcpListener.AcceptTcpClient();//genera error
+                Thread miThreadCliente = new Thread(new ParameterizedThreadStart(ComunicacionConCliente));
+                miThreadCliente.Start(tcpClient);
+            }//fin while
+        }//fin EscucharCliente
+
+        /*
+         * este metodo se encarga de deplegar en el modulo Servidor la cantidad
+         * de clientes conectados
+         */
+        private void CantidadClientesConectados(string salida)
+        {
+            this.textBoxCantidadClientesConectados.Text = salida;
+        }//fin CantidadClientesConectados
+
+        /*
+         * este metodo se encarga de iniciar el servidor
+         */
+        private void buttonIniciarServidor_Click(object sender, EventArgs e)
+        {
+            //IPAddress miIPAddress = IPAddress.Parse("127.0.0.1");
+            IPAddress miIPAddress = IPAddress.Any;
+            miTcpListener = new TcpListener(miIPAddress, 25000);
+            miThreadSubprocesoEscuchaCliente = new Thread(new ThreadStart(EscucharCliente));
+            miThreadSubprocesoEscuchaCliente.Start();
+            miThreadSubprocesoEscuchaCliente.IsBackground = true;
+            miServidorEstaEscuchando = true;
+            labelIniciarApagarServidor.Text = "Escendido: IP = ANY / Puerto = 25000";
+            labelIniciarApagarServidor.ForeColor = Color.Green;
+            buttonIniciarServidor.Enabled = false;
+            buttonApagarServidor.Enabled = true;
+        }//fin buttonIniciarServidor_Click
+
+        /*
+         * este metodo se encarga de apagar el servidor
+         */
+        private void buttonApagarServidor_Click(object sender, EventArgs e)
+        {
+            miServidorEstaEscuchando = false;
+            labelIniciarApagarServidor.Text = "Apagado";
+            labelIniciarApagarServidor.ForeColor = Color.Red;
+            buttonIniciarServidor.Enabled = true;
+            buttonApagarServidor.Enabled = false;
+            miTcpListener.Stop();
+        }//fin buttonApagarServidor_Click
 
         /*
          * este metodo se encarga cerrar o no la aplicacion
@@ -186,5 +296,6 @@ namespace ProyectoMiFinca
             this.miFRMListaVacunas = new FRMListaVacunas();
             this.miFRMListaVacunas.Show();
         }//fin vacunasToolStripMenuItem_Click
+
     }//fin clase parcial MenuPrincipal
 }
