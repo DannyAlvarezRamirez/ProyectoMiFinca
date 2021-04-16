@@ -33,7 +33,7 @@ namespace ProyectoMiFinca
         FRMListaAnimales miFRMListaAnimales;
         FRMVacuna miFRMVacuna;
         FRMListaVacunas miFRMListaVacunas;
-        //////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////
         //variables de comunicacion TCP del servidor
         TcpListener miTcpListener;
         Thread miThreadSubprocesoEscuchaCliente;
@@ -42,7 +42,9 @@ namespace ProyectoMiFinca
         private delegate void cantidadClientesConectados(string salida);
         cantidadClientesConectados miCantidadClientesConectados;
 
-        //constructor
+        /*
+         * constructor
+         */
         public FRMMenuPrincipal()
         {
             InitializeComponent();
@@ -70,7 +72,7 @@ namespace ProyectoMiFinca
                 }//fin try
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ha ocurrido un error en la conexion con el Servidor." +
+                    MessageBox.Show("Ha ocurrido un error en el Servidor." +
                         "/nDetalle del error: " + ex.Message);
                 }//fin catch
 
@@ -78,16 +80,17 @@ namespace ProyectoMiFinca
                 {
                     MessageBox.Show("No hay paquetes.");
                 }//fin if
+
+                //formateo del paquete
+                string mensaje = miASCIIEncodingCodificacion.GetString(miBuffer, 0, cantidadDeBytes);
+                string mensajeFormateado = string.Format("El cliente {0} se ha conectado.", mensaje);
+                MessageBox.Show(mensajeFormateado);
+
+                //modificacion del textbox mediante el delegado
+                this.textBoxCantidadClientesConectados.Invoke(this.miCantidadClientesConectados, new object[] { "Se ha conectado: " + mensaje });
+                miTcpCliente.Close();
             }//fin while
 
-            //formateo del paquete
-            string mensaje = miASCIIEncodingCodificacion.GetString(miBuffer, 0, cantidadDeBytes);
-            string mensajeFormateado = string.Format("El cliente {0} se ha conectado.", mensaje);
-            MessageBox.Show(mensajeFormateado);
-
-            //modificacion del textbox mediante el delegado
-            this.textBoxCantidadClientesConectados.Invoke(this.miCantidadClientesConectados, new object[] { "Se ha conectado: " + mensaje});
-            miTcpCliente.Close();
         }//fin 
 
         /*
@@ -119,8 +122,8 @@ namespace ProyectoMiFinca
          */
         private void buttonIniciarServidor_Click(object sender, EventArgs e)
         {
-            //IPAddress miIPAddress = IPAddress.Parse("127.0.0.1");
-            IPAddress miIPAddress = IPAddress.Any;
+            IPAddress miIPAddress = IPAddress.Parse("127.0.0.1");
+            //IPAddress miIPAddress = IPAddress.Any;
             miTcpListener = new TcpListener(miIPAddress, 25000);
             miThreadSubprocesoEscuchaCliente = new Thread(new ThreadStart(EscucharCliente));
             miThreadSubprocesoEscuchaCliente.Start();
@@ -144,6 +147,8 @@ namespace ProyectoMiFinca
             buttonApagarServidor.Enabled = false;
             miTcpListener.Stop();
         }//fin buttonApagarServidor_Click
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /*
          * este metodo se encarga cerrar o no la aplicacion

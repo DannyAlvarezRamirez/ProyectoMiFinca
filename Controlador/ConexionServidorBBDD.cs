@@ -12,7 +12,7 @@ namespace ProyectoMiFinca
     {
         //atributos, referencias, instancias
         //Cadena de Conexion
-        string cadena = "Data Source = LAPTOP-8OSCM6S2\\SQLEXPRESS; Initial Catalog = MIFINCA; Integrated Security = true";
+        public string cadena = "Data Source = LAPTOP-8OSCM6S2\\SQLEXPRESS; Initial Catalog = MIFINCA; Integrated Security = true";
         public SqlConnection conexion = new SqlConnection();
 
         //Constructor
@@ -29,7 +29,7 @@ namespace ProyectoMiFinca
             try
             {
                 this.conexion.Open();
-                MessageBox.Show("Conectado!");
+                //MessageBox.Show("Conectado!");
             }//fin try
             catch (Exception ex)
             {

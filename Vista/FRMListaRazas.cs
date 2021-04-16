@@ -15,6 +15,8 @@ namespace ProyectoMiFinca
      */
     public partial class FRMListaRazas : Form
     {
+        //atributos y referencias
+        ControladorFRMRaza miControladorFRMRaza;
         public FRMListaRazas()
         {
             InitializeComponent();
@@ -30,11 +32,11 @@ namespace ProyectoMiFinca
         {
             try
             {
-                this.dataGridViewRazas.DataSource = ControladorFRMRaza.miListaRaza;
+                this.dataGridViewRazas.DataSource = miControladorFRMRaza.ObtenerMiLista();
             }//fin try
             catch (Exception ex)
             {
-                MessageBox.Show("Aun no hay razas y/o fincas registradas.");
+                MessageBox.Show("Aun no hay razas registradas.");
             }//fin catch
         }//fin LlenarDataGridViewRazas
         /*

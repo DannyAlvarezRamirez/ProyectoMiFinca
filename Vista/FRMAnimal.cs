@@ -16,9 +16,12 @@ namespace ProyectoMiFinca
      */
     public partial class FRMAnimal : Form
     {
+        //atributos y referencias e intancias necesarias
+        ControladorFRMFinca miControladorFRMFinca;
+
         public FRMAnimal()
         {
-            InitializeComponent();
+            miControladorFRMFinca = new ControladorFRMFinca();
             LlenarComboBoxFincas();
             LlenarComboBoxRazas();
         }//fin constructor
@@ -63,7 +66,7 @@ namespace ProyectoMiFinca
                     MessageBox.Show(ControladorFRMAnimal.RegistrarAnimal(ControladorFRMAnimal.GetObjetoAnimal(
                         Convert.ToInt32(this.maskedTextBoxIdentificacion.Text), this.comboBoxSexos.Text,
                         Convert.ToInt32(this.textBoxMadre.Text), Convert.ToInt32(this.textBoxPadre.Text), this.textBoxNombre.Text, this.maskedTextBoxFechaNacimiento.Text,
-                        ControladorFRMFinca.BuscarFinca(Convert.ToInt32(this.comboBoxFincas.SelectedItem.ToString())),
+                        miControladorFRMFinca.BuscarFinca(Convert.ToInt32(this.comboBoxFincas.SelectedItem.ToString())),
                         ControladorFRMRaza.BuscarRaza(Convert.ToInt32(this.comboBoxRazas.SelectedItem.ToString())))));
                     //estado inicial
                     this.EstadoInicial();

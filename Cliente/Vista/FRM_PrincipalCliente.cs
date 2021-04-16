@@ -40,8 +40,8 @@ namespace Cliente
                 try
                 {
                     //establecer conexion con el servidor
-                    //IPAddress miIPAddressServidor = IPAddress.Parse("127.0.0.1");
-                    IPAddress miIPAddressServidor = IPAddress.Any;
+                    IPAddress miIPAddressServidor = IPAddress.Parse("127.0.0.1");
+                    //IPAddress miIPAddressServidor = IPAddress.Any;
                     miTcpClient = new TcpClient();
                     IPEndPoint miIPEndPoint = new IPEndPoint(miIPAddressServidor, 25000);
                     miTcpClient.Connect(miIPEndPoint);
@@ -63,7 +63,7 @@ namespace Cliente
                 }//fin try
                 catch(SocketException ex)
                 {
-                    MessageBox.Show("Ha ocurrido un error en la conexion con el servidor." +
+                    MessageBox.Show("Cliente: Ha ocurrido un error en la conexion con el servidor." +
                         "\nDetalle del error: " + ex.Message);
                 }//fin catch
 

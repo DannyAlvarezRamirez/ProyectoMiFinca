@@ -72,22 +72,26 @@
             // 
             // buttonConectarAlServidor
             // 
+            this.buttonConectarAlServidor.BackColor = System.Drawing.SystemColors.Highlight;
+            this.buttonConectarAlServidor.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonConectarAlServidor.Location = new System.Drawing.Point(36, 138);
             this.buttonConectarAlServidor.Name = "buttonConectarAlServidor";
-            this.buttonConectarAlServidor.Size = new System.Drawing.Size(103, 58);
+            this.buttonConectarAlServidor.Size = new System.Drawing.Size(172, 58);
             this.buttonConectarAlServidor.TabIndex = 4;
             this.buttonConectarAlServidor.Text = "Conectar al Servidor";
-            this.buttonConectarAlServidor.UseVisualStyleBackColor = true;
+            this.buttonConectarAlServidor.UseVisualStyleBackColor = false;
             this.buttonConectarAlServidor.Click += new System.EventHandler(this.buttonConectarAlServidor_Click);
             // 
             // buttonDesconectarDelServidor
             // 
-            this.buttonDesconectarDelServidor.Location = new System.Drawing.Point(174, 138);
+            this.buttonDesconectarDelServidor.BackColor = System.Drawing.SystemColors.Desktop;
+            this.buttonDesconectarDelServidor.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonDesconectarDelServidor.Location = new System.Drawing.Point(237, 138);
             this.buttonDesconectarDelServidor.Name = "buttonDesconectarDelServidor";
-            this.buttonDesconectarDelServidor.Size = new System.Drawing.Size(109, 58);
+            this.buttonDesconectarDelServidor.Size = new System.Drawing.Size(233, 58);
             this.buttonDesconectarDelServidor.TabIndex = 5;
             this.buttonDesconectarDelServidor.Text = "Desconectar del Servidor";
-            this.buttonDesconectarDelServidor.UseVisualStyleBackColor = true;
+            this.buttonDesconectarDelServidor.UseVisualStyleBackColor = false;
             this.buttonDesconectarDelServidor.Click += new System.EventHandler(this.buttonDesconectarDelServidor_Click);
             // 
             // FRM_PrincipalCliente

@@ -17,6 +17,10 @@ namespace ProyectoMiFinca
         private double dbTamanoFinca;
 
         ////constructores
+        public ObjetoFinca()
+        {
+
+        }//fin constructor vacio
         public ObjetoFinca(int numeroFinca, string nombreFinca, string direccionFinca, int telefonoFinca, double tamanoFinca)
         {
             this.intNumeroFinca = numeroFinca;

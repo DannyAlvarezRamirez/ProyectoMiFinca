@@ -17,10 +17,12 @@ namespace ProyectoMiFinca
     public partial class FRMFinca : Form
     {
         //atributos y referencias
+        ControladorFRMFinca miControladorFRMFinca;
         
         public FRMFinca()
         {
             InitializeComponent();
+            miControladorFRMFinca = new ControladorFRMFinca();
         }//fin constructor
 
         /*
@@ -58,7 +60,7 @@ namespace ProyectoMiFinca
                                 this.textBoxDireccionFinca.Text != "" && this.maskedTextBoxTelefono.Text != "" &&
                                 this.maskedTextBoxTamanoFinca.Text != "")
                 {
-                    MessageBox.Show(ControladorFRMFinca.RegistrarFinca(ControladorFRMFinca.GetObjetoFinca(
+                    MessageBox.Show(miControladorFRMFinca.RegistrarFinca(miControladorFRMFinca.GetObjetoFinca(
                         Convert.ToInt32(this.maskedTextBoxNumeroFinca.Text), this.textBoxNombreFinca.Text,
                         this.textBoxDireccionFinca.Text, Convert.ToInt32(this.maskedTextBoxTelefono.Text),
                         Convert.ToInt32(this.maskedTextBoxTamanoFinca.Text))));
@@ -74,7 +76,8 @@ namespace ProyectoMiFinca
             catch(Exception ex) 
             {
                 MessageBox.Show("Ha introducido un valor invalido o el numero de finca ya existe." +
-                    " Por favor, vuelva a intentarlo.");
+                    " Por favor, vuelva a intentarlo." +
+                    "\nDetalle del error: " + ex.Message);
             }//fin catch
             
         }//fin btnRegistrar_Click

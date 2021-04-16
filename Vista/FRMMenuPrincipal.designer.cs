@@ -62,7 +62,7 @@
             this.mostrarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(945, 33);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -178,12 +178,11 @@
             // 
             // textBoxAccionesClientes
             // 
-            this.textBoxAccionesClientes.Location = new System.Drawing.Point(12, 195);
+            this.textBoxAccionesClientes.Location = new System.Drawing.Point(16, 245);
             this.textBoxAccionesClientes.Multiline = true;
             this.textBoxAccionesClientes.Name = "textBoxAccionesClientes";
-            this.textBoxAccionesClientes.Size = new System.Drawing.Size(776, 208);
+            this.textBoxAccionesClientes.Size = new System.Drawing.Size(917, 237);
             this.textBoxAccionesClientes.TabIndex = 1;
-            //this.textBoxAccionesClientes.TextChanged += new System.EventHandler(this.textBoxAccionesClientes_TextChanged);
             // 
             // labelCantidadClientesConectados
             // 
@@ -197,7 +196,7 @@
             // labelAccionesClientes
             // 
             this.labelAccionesClientes.AutoSize = true;
-            this.labelAccionesClientes.Location = new System.Drawing.Point(315, 172);
+            this.labelAccionesClientes.Location = new System.Drawing.Point(12, 222);
             this.labelAccionesClientes.Name = "labelAccionesClientes";
             this.labelAccionesClientes.Size = new System.Drawing.Size(181, 20);
             this.labelAccionesClientes.TabIndex = 3;
@@ -206,24 +205,27 @@
             // textBoxCantidadClientesConectados
             // 
             this.textBoxCantidadClientesConectados.Location = new System.Drawing.Point(16, 83);
+            this.textBoxCantidadClientesConectados.Multiline = true;
             this.textBoxCantidadClientesConectados.Name = "textBoxCantidadClientesConectados";
-            this.textBoxCantidadClientesConectados.Size = new System.Drawing.Size(242, 26);
+            this.textBoxCantidadClientesConectados.Size = new System.Drawing.Size(352, 136);
             this.textBoxCantidadClientesConectados.TabIndex = 4;
             // 
             // buttonIniciarServidor
             // 
-            this.buttonIniciarServidor.Location = new System.Drawing.Point(636, 83);
+            this.buttonIniciarServidor.BackColor = System.Drawing.Color.Lime;
+            this.buttonIniciarServidor.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonIniciarServidor.Location = new System.Drawing.Point(482, 83);
             this.buttonIniciarServidor.Name = "buttonIniciarServidor";
             this.buttonIniciarServidor.Size = new System.Drawing.Size(152, 49);
             this.buttonIniciarServidor.TabIndex = 6;
             this.buttonIniciarServidor.Text = "Iniciar Servidor";
-            this.buttonIniciarServidor.UseVisualStyleBackColor = true;
+            this.buttonIniciarServidor.UseVisualStyleBackColor = false;
             this.buttonIniciarServidor.Click += new System.EventHandler(this.buttonIniciarServidor_Click);
             // 
             // labelIniciarApagarServidor
             // 
             this.labelIniciarApagarServidor.AutoSize = true;
-            this.labelIniciarApagarServidor.Location = new System.Drawing.Point(355, 33);
+            this.labelIniciarApagarServidor.Location = new System.Drawing.Point(396, 44);
             this.labelIniciarApagarServidor.Name = "labelIniciarApagarServidor";
             this.labelIniciarApagarServidor.Size = new System.Drawing.Size(74, 20);
             this.labelIniciarApagarServidor.TabIndex = 8;
@@ -231,19 +233,21 @@
             // 
             // buttonApagarServidor
             // 
-            this.buttonApagarServidor.Location = new System.Drawing.Point(636, 140);
+            this.buttonApagarServidor.BackColor = System.Drawing.Color.Red;
+            this.buttonApagarServidor.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonApagarServidor.Location = new System.Drawing.Point(640, 83);
             this.buttonApagarServidor.Name = "buttonApagarServidor";
             this.buttonApagarServidor.Size = new System.Drawing.Size(152, 49);
             this.buttonApagarServidor.TabIndex = 9;
             this.buttonApagarServidor.Text = "Apagar Servidor";
-            this.buttonApagarServidor.UseVisualStyleBackColor = true;
+            this.buttonApagarServidor.UseVisualStyleBackColor = false;
             this.buttonApagarServidor.Click += new System.EventHandler(this.buttonApagarServidor_Click);
             // 
             // FRMMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(945, 494);
             this.Controls.Add(this.buttonApagarServidor);
             this.Controls.Add(this.labelIniciarApagarServidor);
             this.Controls.Add(this.buttonIniciarServidor);

@@ -17,10 +17,12 @@ namespace ProyectoMiFinca
     public partial class FRMListaFincas : Form
     {
         //atributos y referencias
+        ControladorFRMFinca miControladorFRMFinca;
 
         public FRMListaFincas()
         {
             InitializeComponent();
+            miControladorFRMFinca = new ControladorFRMFinca();
             LlenarDataGridViewFincas();
         }//fin constructor
 
@@ -33,7 +35,7 @@ namespace ProyectoMiFinca
         {
             try
             {
-                this.dataGridViewFincas.DataSource = ControladorFRMFinca.miListaFinca;
+                this.dataGridViewFincas.DataSource = miControladorFRMFinca.ObtenerMiLista();
             }//fin try
             catch (Exception ex)
             {

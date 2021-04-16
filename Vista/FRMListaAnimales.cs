@@ -15,9 +15,12 @@ namespace ProyectoMiFinca
      */
     public partial class FRMListaAnimales : Form
     {
+        //atributos y referencias
+        ControladorFRMAnimal miControladorFRMAnimal;
         public FRMListaAnimales()
         {
             InitializeComponent();
+            miControladorFRMAnimal = new ControladorFRMAnimal();
             LlenarDataGridViewAnimales();
         }//fin constructor
 
@@ -30,7 +33,7 @@ namespace ProyectoMiFinca
         {
             try
             {
-                this.dataGridViewAnimales.DataSource = ControladorFRMAnimal.miListaAnimal;
+                this.dataGridViewAnimales.DataSource = miControladorFRMAnimal.ObtenerMiLista();
             }//fin try
             catch (Exception ex)
             {
