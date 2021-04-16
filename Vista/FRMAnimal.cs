@@ -18,10 +18,14 @@ namespace ProyectoMiFinca
     {
         //atributos y referencias e intancias necesarias
         ControladorFRMFinca miControladorFRMFinca;
+        ControladorFRMRaza miControladorFRMRaza;
+        ControladorFRMAnimal miControladorFRMAnimal;
 
         public FRMAnimal()
         {
             miControladorFRMFinca = new ControladorFRMFinca();
+            miControladorFRMRaza = new ControladorFRMRaza();
+            miControladorFRMAnimal = new ControladorFRMAnimal();
             LlenarComboBoxFincas();
             LlenarComboBoxRazas();
         }//fin constructor
@@ -63,11 +67,11 @@ namespace ProyectoMiFinca
                                 this.maskedTextBoxFechaNacimiento.Text != "" && this.comboBoxSexos.Text != "" &&
                                 this.textBoxMadre.Text != "" && this.textBoxPadre.Text != "")
                 {
-                    MessageBox.Show(ControladorFRMAnimal.RegistrarAnimal(ControladorFRMAnimal.GetObjetoAnimal(
+                    MessageBox.Show(miControladorFRMAnimal.RegistrarAnimal(miControladorFRMAnimal.GetObjetoAnimal(
                         Convert.ToInt32(this.maskedTextBoxIdentificacion.Text), this.comboBoxSexos.Text,
                         Convert.ToInt32(this.textBoxMadre.Text), Convert.ToInt32(this.textBoxPadre.Text), this.textBoxNombre.Text, this.maskedTextBoxFechaNacimiento.Text,
                         miControladorFRMFinca.BuscarFinca(Convert.ToInt32(this.comboBoxFincas.SelectedItem.ToString())),
-                        ControladorFRMRaza.BuscarRaza(Convert.ToInt32(this.comboBoxRazas.SelectedItem.ToString())))));
+                        miControladorFRMRaza.BuscarRaza(Convert.ToInt32(this.comboBoxRazas.SelectedItem.ToString())))));
                     //estado inicial
                     this.EstadoInicial();
                 }//fin if

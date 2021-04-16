@@ -12,6 +12,10 @@ namespace ProyectoMiFinca
         private ObjetoFinca objFincaDueno;
 
         //constructores
+        public ObjetoDueno()
+        {
+
+        }//fin contructor vacio
         public ObjetoDueno(int identificacionPersona, string nombrePersona, string primerApellido, string segundoApellido,
             string correoElectronicoDueno, int numeroCelularDueno, ObjetoFinca objFincaDueno)
             :base(identificacionPersona, nombrePersona, primerApellido, segundoApellido)

@@ -17,9 +17,11 @@ namespace ProyectoMiFinca
     public partial class FRMDueno : Form
     {
         //atributos y referencias
+        ControladorFRMDueno miControladorFRMDueno;
         public FRMDueno()
         {
             InitializeComponent();
+            miControladorFRMDueno = new ControladorFRMDueno();
             LlenarComboBoxFincas();
         }//fin constructor
 
@@ -60,11 +62,11 @@ namespace ProyectoMiFinca
                                 this.textBoxCorreoElectronico.Text != "" && this.maskedTextBoxNumeroCelular.Text != "" &&
                                 this.comboBoxFincas.Text != "")
                 {
-                    MessageBox.Show(ControladorFRMDueno.RegistrarDueno(ControladorFRMDueno.GetObjetoDueno(
+                    MessageBox.Show(miControladorFRMDueno.RegistrarDueno(miControladorFRMDueno.GetObjetoDueno(
                         Convert.ToInt32(this.maskedTextBoxIdentificacion.Text), this.textBoxNombre.Text,
                         this.textBoxPrimerApellido.Text, this.textBoxSegundoApellido.Text, 
                         this.textBoxCorreoElectronico.Text, Convert.ToInt32(this.maskedTextBoxNumeroCelular.Text),
-                        ControladorFRMDueno.BuscarFinca(Convert.ToInt32(this.comboBoxFincas.SelectedItem.ToString())))));
+                        miControladorFRMDueno.BuscarFinca(Convert.ToInt32(this.comboBoxFincas.SelectedItem.ToString())))));
                     //estado inicial
                     this.EstadoInicial();
                 }//fin if

@@ -16,9 +16,12 @@ namespace ProyectoMiFinca
          */
     public partial class FRMRaza : Form
     {
+        //atributos, referencias, instancias necesarias
+        ControladorFRMRaza miControladorFRMRaza;
         public FRMRaza()
         {
             InitializeComponent();
+            miControladorFRMRaza = new ControladorFRMRaza();
         }//fin constructor
 
         /*
@@ -55,7 +58,7 @@ namespace ProyectoMiFinca
             {
                 if (this.maskedTextBoxCodigoRaza.Text != "" && this.textBoxDescripcionRaza.Text != "")
                 {
-                    MessageBox.Show(ControladorFRMRaza.RegistrarRaza(ControladorFRMRaza.GetObjetoRaza(
+                    MessageBox.Show(miControladorFRMRaza.RegistrarRaza(miControladorFRMRaza.GetObjetoRaza(
                         Convert.ToInt32(this.maskedTextBoxCodigoRaza.Text), this.textBoxDescripcionRaza.Text)));
                     //estado inicial
                     this.EstadoInicial();

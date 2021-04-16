@@ -18,9 +18,9 @@ namespace ProyectoMiFinca
     {
         //atributos y referencias
         static int posicion;
-        static ObjetoAnimal miObjetoAnimal;
-        static ObjetoFinca miObjetoFinca;
-        static ObjetoRaza miObjetoRaza;
+        public ObjetoAnimal miObjetoAnimal;
+        public ObjetoFinca miObjetoFinca;
+        public ObjetoRaza miObjetoRaza;
         public static List<ObjetoAnimal> miListaAnimal;
         public ConexionServidorBBDD cadenaConexion = new ConexionServidorBBDD();
         ControladorFRMFinca miControladorFRMFinca;

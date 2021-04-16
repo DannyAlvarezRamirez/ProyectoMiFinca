@@ -11,6 +11,8 @@ namespace ProyectoMiFinca
         private string strUsuario, strContrasena;
         private int intEstado;
 
+        //constructores
+        public ObjetoEmpleado() { }//fin constructor vacio
         public ObjetoEmpleado(int identificacionPersona, string nombrePersona, string primerApellido, string segundoApellido, 
             double salarioEmpleado, string usuario, string contrasena, int estado)
             :base(identificacionPersona, nombrePersona, primerApellido, segundoApellido)
