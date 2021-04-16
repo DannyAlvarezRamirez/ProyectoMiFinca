@@ -53,6 +53,7 @@
     <Compile Include="Controlador\ControladorFRMFinca.cs" />
     <Compile Include="Controlador\ControladorFRMRaza.cs" />
     <Compile Include="Controlador\ControladorFRMVacuna.cs" />
+    <Compile Include="Controlador\ControladorVacunaAnimal.cs" />
     <Compile Include="Modelo\ObjetoAnimal.cs" />
     <Compile Include="Modelo\ObjetoDueno.cs" />
     <Compile Include="Modelo\ObjetoEmpleado.cs" />
@@ -117,6 +118,12 @@
     <Compile Include="Vista\FRMListaRazas.designer.cs">
       <DependentUpon>FRMListaRazas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vista\FRMListaVacunasAnimales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\FRMListaVacunasAnimales.Designer.cs">
+      <DependentUpon>FRMListaVacunasAnimales.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vista\FRMListaVacunas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +147,12 @@
     </Compile>
     <Compile Include="Vista\FRMVacuna.Designer.cs">
       <DependentUpon>FRMVacuna.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\FRMVacunaAnimal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\FRMVacunaAnimal.Designer.cs">
+      <DependentUpon>FRMVacunaAnimal.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -178,6 +191,9 @@
     <EmbeddedResource Include="Vista\FRMListaRazas.resx">
       <DependentUpon>FRMListaRazas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vista\FRMListaVacunasAnimales.resx">
+      <DependentUpon>FRMListaVacunasAnimales.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vista\FRMListaVacunas.resx">
       <DependentUpon>FRMListaVacunas.cs</DependentUpon>
     </EmbeddedResource>
@@ -189,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\FRMVacuna.resx">
       <DependentUpon>FRMVacuna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\FRMVacunaAnimal.resx">
+      <DependentUpon>FRMVacunaAnimal.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
