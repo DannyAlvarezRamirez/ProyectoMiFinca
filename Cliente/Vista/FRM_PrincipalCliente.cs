@@ -16,6 +16,12 @@ namespace Cliente
     public partial class FRM_PrincipalCliente : Form
     {
         //atributos, referencias, instancias
+        FRMEmpleado miFRMEmpleado;
+        FRMListaEmpleados miFRMListaEmpleados;
+        FRMVacuna miFRMVacuna;
+        FRMListaVacunas miFRMListaVacunas;
+        FRMVacunaAnimal miFRMVacunaAnimal;
+        FRMListaVacunasAnimales miFRMListaVacunasAnimales;
         bool clienteConectado;
         TcpClient miTcpClient;
 
@@ -89,5 +95,67 @@ namespace Cliente
             miTcpClient.Close();
         }//fin buttonDesconectarDelServidor_Click
 
+        /*
+         * este metodo se acciona al dar click y despliega un nuevo formulario = Registrar Empleado
+         */
+        private void empleadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //instancia de formulario Registrar Empleado
+            this.miFRMEmpleado = new FRMEmpleado();
+            this.miFRMEmpleado.Show();
+        }//empleadoToolStripMenuItem_Click
+
+        /*
+         * este metodo se acciona al dar click sobre el menu strip mostrar empleados
+         * y se encarga de desplegar en una tabla la informacion de los registros
+         * Empleados
+         */
+        private void empleadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.miFRMListaEmpleados = new FRMListaEmpleados();
+            this.miFRMListaEmpleados.Show();
+        }//fin empleadosToolStripMenuItem1_Click
+
+        /*
+         * este metodo se acciona al dar click y despliega un nuevo formulario = Registrar Vacuna
+         */
+        private void vacunaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //instancia de formulario Registrar Vacuna
+            this.miFRMVacuna = new FRMVacuna();
+            this.miFRMVacuna.Show();
+        }//fin vacunaToolStripMenuItem_Click
+
+        /*
+         * este metodo se acciona al dar click sobre el menu strip mostrar vacunas
+         * y se encarga de desplegar en una tabla la informacion de los registros
+         * Vacunas
+         */
+        private void vacunasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.miFRMListaVacunas = new FRMListaVacunas();
+            this.miFRMListaVacunas.Show();
+        }//fin vacunasToolStripMenuItem_Click
+
+        /*
+         * este metodo se acciona al dar click y despliega un nuevo formulario = Registrar Vacuna Animal
+         */
+        private void vacunaAnimaleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //instancia de formulario Registrar Vacuna
+            this.miFRMVacunaAnimal = new FRMVacunaAnimal();
+            this.miFRMVacunaAnimal.Show();
+        }//fin vacunaAnimaleToolStripMenuItem_Click
+
+        /*
+         * este metodo se acciona al dar click sobre el menu strip mostrar vacunas de animales
+         * y se encarga de desplegar en una tabla la informacion de los registros
+         * Vacunas de Animales
+         */
+        private void vacunasAnimalesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.miFRMListaVacunasAnimales = new FRMListaVacunasAnimales();
+            this.miFRMListaVacunasAnimales.Show();
+        }//fin vacunasAnimalesToolStripMenuItem_Click
     }//fin clase FRM_PrincipalCliente
 }

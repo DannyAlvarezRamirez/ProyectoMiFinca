@@ -46,7 +46,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controlador\ControladorFRMEmpleado.cs" />
+    <Compile Include="Controlador\ControladorFRMVacuna.cs" />
+    <Compile Include="Controlador\ControladorVacunaAnimal.cs" />
     <Compile Include="Modelo\ObjetoPersona.cs" />
+    <Compile Include="Vista\FRMEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\FRMEmpleado.designer.cs">
+      <DependentUpon>FRMEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\FRMListaEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\FRMListaEmpleados.designer.cs">
+      <DependentUpon>FRMListaEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\FRMListaVacunas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\FRMListaVacunas.Designer.cs">
+      <DependentUpon>FRMListaVacunas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\FRMListaVacunasAnimales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\FRMListaVacunasAnimales.Designer.cs">
+      <DependentUpon>FRMListaVacunasAnimales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\FRMVacuna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\FRMVacuna.Designer.cs">
+      <DependentUpon>FRMVacuna.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\FRMVacunaAnimal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\FRMVacunaAnimal.Designer.cs">
+      <DependentUpon>FRMVacunaAnimal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vista\FRM_PrincipalCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +106,24 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Vista\FRMEmpleado.resx">
+      <DependentUpon>FRMEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\FRMListaEmpleados.resx">
+      <DependentUpon>FRMListaEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\FRMListaVacunas.resx">
+      <DependentUpon>FRMListaVacunas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\FRMListaVacunasAnimales.resx">
+      <DependentUpon>FRMListaVacunasAnimales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\FRMVacuna.resx">
+      <DependentUpon>FRMVacuna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\FRMVacunaAnimal.resx">
+      <DependentUpon>FRMVacunaAnimal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vista\FRM_PrincipalCliente.resx">
       <DependentUpon>FRM_PrincipalCliente.cs</DependentUpon>
     </EmbeddedResource>

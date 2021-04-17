@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Data;
 
-namespace ProyectoMiFinca
+namespace Cliente
 {
     /*
      * esta clase se encarga de controlar las funciones entre la vista y los formularios
@@ -21,7 +21,6 @@ namespace ProyectoMiFinca
         public int posicion;
         public ObjetoVacunaAnimal miObjetoVacunaAnimal;
         public static List<ObjetoVacunaAnimal> miListaVacunasAnimal;
-        public ConexionServidorBBDD cadenaConexion = new ConexionServidorBBDD();
 
         //constructor
         public ControladorVacunaAnimal()
@@ -40,31 +39,13 @@ namespace ProyectoMiFinca
             {
                 salida = "Ya existe un registro con ese mismo numero de identificacion. Por favor" +
                     " vuelva a intentarlo.";
-            }//fin if
+            }//fin if 
             else
             {
-                SqlCommand comando = new SqlCommand();
-                string sentencia = " Insert	Into Vacuna_Animal(Id_animal, Id_vacuna, Fec_vacuna" +
-                    "Enfermedad, Observaciones)" +
-                    " Values (@Id_animal, @Id_vacuna, @Fec_vacuna, @Enfermedad, @Observaciones)";
+                miListaVacunasAnimal.Add(miObjetoVacunasAnimal);
+                salida = "Se agrego la vacuna animal correctamente";
 
-                comando.CommandType = CommandType.Text;
-                comando.CommandText = sentencia;
-                comando.Connection = cadenaConexion.conexion;
-                comando.Parameters.AddWithValue("@Id_animal", miObjetoVacunaAnimal.IdentificacionAnimal);
-                comando.Parameters.AddWithValue("@Id_vacuna", miObjetoVacunaAnimal.IdentificacionVacuna);
-                comando.Parameters.AddWithValue("@Fec_vacuna", miObjetoVacunaAnimal.FechaNacimientoAnimal);
-                comando.Parameters.AddWithValue("@Enfermedad", miObjetoVacunaAnimal.EnfermedadAnimal);
-                comando.Parameters.AddWithValue("@Observaciones", miObjetoVacunaAnimal.ObservacionesAnimal);
-
-                //abrir conexion
-                cadenaConexion.abrir();
-                comando.ExecuteNonQuery();
-                //cerrar conexion
-                cadenaConexion.cerrar();
-                salida = "Se agrego la vacuna de animal correctamente";
-            }//fin else
-
+            }//fin else 
             return salida;
         }//fin RegistrarVacuna
 
@@ -73,35 +54,7 @@ namespace ProyectoMiFinca
          */
         public List<ObjetoVacunaAnimal> ObtenerMiLista()
         {
-            //cargar miListaFinca desde base de datos
-            SqlCommand comando = new SqlCommand();
-            string sentencia = " Select Id_animal, Id_vacuna, Fec_vacuna" +
-                    "Enfermedad, Observaciones From Vacuna_Animal";
-            comando.CommandType = CommandType.Text;
-            comando.CommandText = sentencia;
-            comando.Connection = cadenaConexion.conexion;
-            //abrir conexion
-            cadenaConexion.abrir();
-            SqlDataReader lectorDatos = comando.ExecuteReader();
-            if (lectorDatos.HasRows == true)
-            {
-                while (lectorDatos.Read())
-                {
-                    miListaVacunasAnimal.Add(new ObjetoVacunaAnimal
-                    {
-                        IdentificacionAnimal = Convert.ToInt32(lectorDatos["Id_animal"].ToString()),
-                        IdentificacionVacuna = Convert.ToInt32(lectorDatos["Id_vacuna"].ToString()),
-                        FechaNacimientoAnimal = lectorDatos["Fec_vacuna"].ToString(),
-                        EnfermedadAnimal = lectorDatos["Enfermedad"].ToString(),
-                        ObservacionesAnimal = lectorDatos["Observaciones"].ToString()
-                    });
-                }//fin while
-            }//fin if
-            //cerrar conexion
-            cadenaConexion.cerrar();
-
             return miListaVacunasAnimal;
-
         }//fin ObtenerMiLista
 
         /*

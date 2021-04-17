@@ -8,45 +8,46 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProyectoMiFinca
+namespace Cliente
 {
     /*
-     * esta clase se encarga de desplegar los registros de razas
+     * esta clase se encarga de desplegar los registros de vacunas
      */
-    public partial class FRMListaRazas : Form
+    public partial class FRMListaVacunas : Form
     {
         //atributos y referencias
-        ControladorFRMRaza miControladorFRMRaza;
-        public FRMListaRazas()
+        ControladorFRMVacuna miControladorFRMVacuna;
+
+        public FRMListaVacunas()
         {
             InitializeComponent();
-            miControladorFRMRaza = new ControladorFRMRaza();
-            LlenarDataGridViewRazas();
+            miControladorFRMVacuna = new ControladorFRMVacuna();
+            LlenarDataGridViewVacunas();
         }//fin constructor
 
         //metodos
         /*
-         * LlenarDataGridViewRazas = este metodo se encarga de llenar el LlenarDataGridViewRazas
-         * con sus respectivos registros de razas
+         * LlenarDataGridViewVacunas = este metodo se encarga de llenar el LlenarDataGridViewVacunas
+         * con sus respectivos registros de vacunas
          */
-        public void LlenarDataGridViewRazas()
+        public void LlenarDataGridViewVacunas()
         {
             try
             {
-                this.dataGridViewRazas.DataSource = miControladorFRMRaza.ObtenerMiLista();
+                this.dataGridViewVacunas.DataSource = miControladorFRMVacuna.ObtenerMiLista();
             }//fin try
             catch (Exception ex)
             {
-                MessageBox.Show("Aun no hay razas registradas.");
+                MessageBox.Show("Aun no hay vacunas registradas.");
             }//fin catch
-        }//fin LlenarDataGridViewRazas
+        }//fin LlenarDataGridViewVacunas
         /*
          * este metodo se encarga de esconder el formulario actual
          */
-        private void FRMListaRazas_Load(object sender, EventArgs e)
+        private void FRMListaVacunas_Load(object sender, EventArgs e)
         {
             this.FormClosed += new FormClosedEventHandler(cerrarFormulario);
-        }//fin FRMListaRazas_Load
+        }//fin FRMListaVacunas_Load
 
         /*
          * este metodo se encarga de esconder el formulario actual 
@@ -55,6 +56,5 @@ namespace ProyectoMiFinca
         {
             this.Hide();
         }//fin cerrarFormulario
-
-    }//fin clase FRMListaRazas
+    }//fin clase FRMListaVacunas
 }

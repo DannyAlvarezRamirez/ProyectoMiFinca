@@ -43,7 +43,7 @@ namespace ProyectoMiFinca
             else
             {
                 SqlCommand comando = new SqlCommand();
-                string sentencia = " Insert	Into Animales (Id_Raza, Descripcion)" +
+                string sentencia = " Insert	Into Raza (Id_Raza, Descripcion)" +
                     " Values (@Id_Raza, @Descripcion)";
 
                 comando.CommandType = CommandType.Text;
@@ -70,7 +70,7 @@ namespace ProyectoMiFinca
         {
             //cargar miListaFinca desde base de datos
             SqlCommand comando = new SqlCommand();
-            string sentencia = " Select Id_Raza, Descripcion From	Raza ";
+            string sentencia = " Select Id_Raza, Descripcion From Raza ";
             comando.CommandType = CommandType.Text;
             comando.CommandText = sentencia;
             comando.Connection = cadenaConexion.conexion;

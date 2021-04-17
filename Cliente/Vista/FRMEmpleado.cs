@@ -8,39 +8,37 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProyectoMiFinca
+namespace Cliente
 {
     /*
-         * esta clase se encarga de desplegar la interfaz de usuario para 
-         * que se registren vacunas de animales
-         */
-    public partial class FRMVacunaAnimal : Form
+     * esta clase se encarga de desplegar la interfaz de usuario para 
+     * que se registren empleados
+     */
+    public partial class FRMEmpleado : Form
     {
-        //atributos y referencias
-        ControladorVacunaAnimal miControladorVacunaAnimal;
-
-        //constructor
-        public FRMVacunaAnimal()
+        public FRMEmpleado()
         {
             InitializeComponent();
-            miControladorVacunaAnimal = new ControladorVacunaAnimal();
+            this.EstadoInicial();
         }//fin constructor
 
         /*
-         * este metodo se encarga de, luego de dar click sobre el boton registrar, de registrar vacunas
-         * de animales en el sistema 
+         * este metodo se encarga de, luego de dar click sobre el boton registrar, de registrar empleados
+         * en el sistema 
          */
         private void buttonRegistrar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (this.maskedTextBoxIdentificacionAnimal.Text != "" && this.maskedTextBoxIdentificacionVacuna.Text != "" &&
-                    this.maskedTextBoxFechaVacuna.Text != "" && this.textBoxEnfermedad.Text != "" &&
-                    this.textBoxObservaciones.Text != "")
+                if (this.maskedTextBoxIdentificacion.Text != "" && this.textBoxNombre.Text != "" &&
+                                this.textBoxPrimerApellido.Text != "" && this.textBoxSegundoApellido.Text != "" &&
+                                this.maskedTextBoxSalario.Text != "")
                 {
-                    MessageBox.Show(miControladorVacunaAnimal.RegistrarVacunaAnimal(miControladorVacunaAnimal.GetObjetoVacunaAnimal(
-                        Convert.ToInt32(this.maskedTextBoxIdentificacionAnimal.Text), Convert.ToInt32(this.maskedTextBoxIdentificacionVacuna.Text),
-                        this.maskedTextBoxFechaVacuna.Text, this.textBoxEnfermedad.Text, this.textBoxObservaciones.Text)));
+                    MessageBox.Show(ControladorFRMEmpleado.RegistrarEmpleado(ControladorFRMEmpleado.GetObjetoEmpleado(
+                        Convert.ToInt32(this.maskedTextBoxIdentificacion.Text), this.textBoxNombre.Text,
+                        this.textBoxPrimerApellido.Text, this.textBoxSegundoApellido.Text,
+                        Convert.ToInt32(this.maskedTextBoxSalario.Text), this.textBoxUsuario.Text, this.textBoxContrasena.Text,
+                        Convert.ToInt32(this.comboBoxEstado.SelectedItem.ToString()))));
                     //estado inicial
                     this.EstadoInicial();
                 }//fin if
@@ -62,15 +60,18 @@ namespace ProyectoMiFinca
          */
         public void EstadoInicial()
         {
-            this.maskedTextBoxIdentificacionAnimal.ResetText();
-            this.maskedTextBoxIdentificacionVacuna.ResetText();
-            this.maskedTextBoxFechaVacuna.ResetText();
-            this.textBoxEnfermedad.ResetText();
-            this.textBoxObservaciones.ResetText();
+            this.maskedTextBoxIdentificacion.ResetText();
+            this.maskedTextBoxSalario.ResetText();
+            this.textBoxNombre.ResetText();
+            this.textBoxPrimerApellido.ResetText();
+            this.textBoxSegundoApellido.ResetText();
+            this.textBoxUsuario.ResetText();
+            this.textBoxContrasena.ResetText();
+            this.comboBoxEstado.SelectedItem = 0;
         }//fin EstadoInicial
 
         /*
-         * este metodo se encarga de esconder el formulario Registrar vacuna animal
+         * este metodo se encarga de esconder el formulario Registrar Empleado
          */
         private void buttonIrAlMenuPrincipal_Click(object sender, EventArgs e)
         {
@@ -80,10 +81,10 @@ namespace ProyectoMiFinca
         /*
          * este metodo se encarga de esconder el formulario actual
          */
-        private void FRMVacunaAnimal_Load(object sender, EventArgs e)
+        private void FRMEmpleado_Load(object sender, EventArgs e)
         {
             this.FormClosed += new FormClosedEventHandler(cerrarFormulario);
-        }//fin FRMVacunaAnimal_Load
+        }//fin FRMEmpleado_Load
 
         /*
          * este metodo se encarga de esconder el formulario actual  
@@ -92,6 +93,5 @@ namespace ProyectoMiFinca
         {
             this.Hide();
         }//fin cerrarFormulario
-
-    }//fin clase FRMVacunaAnimal
+    }//fin clase FRMEmpleado
 }

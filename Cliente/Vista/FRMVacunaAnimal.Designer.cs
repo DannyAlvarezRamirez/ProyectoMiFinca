@@ -1,4 +1,4 @@
-﻿namespace ProyectoMiFinca
+﻿namespace Cliente
 {
     partial class FRMVacunaAnimal
     {

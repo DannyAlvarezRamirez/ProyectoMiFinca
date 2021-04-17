@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Data.SqlClient;
+using System.Windows.Forms;
+using System.Data;
 
 namespace ProyectoMiFinca
 {
@@ -10,39 +14,106 @@ namespace ProyectoMiFinca
      * esta clase se encarga de controlar las funciones entre la vista y los formularios
      * de empleado
      */
-    static class ControladorFRMEmpleado
+    class ControladorFRMEmpleado
     {
         //atributos y referencias
-        static int posicion;
+        int posicion;
         static ObjetoEmpleado miObjetoEmpleado;
-        public static List<ObjetoEmpleado> miListaEmpleado = new List<ObjetoEmpleado>();
+        public List<ObjetoEmpleado> miListaEmpleado;
+        public ConexionServidorBBDD cadenaConexion = new ConexionServidorBBDD();
 
+        //constructor
+        public ControladorFRMEmpleado()
+        {
+            miListaEmpleado = new List<ObjetoEmpleado>();
+        }//fin constructor
         //metodos
         /*
          * este metodo se encarga de registrar objeto empleado
          */
-        public static string RegistrarEmpleado(ObjetoEmpleado objetoEmpleado)
+        public string RegistrarEmpleado(ObjetoEmpleado objetoEmpleado)
         {
             string salida = "";
-            if (BuscarIdentificacionPersona(miObjetoEmpleado.IdentificacionPersona))
+            if (BuscarIdentificacionPersona(objetoEmpleado.IdentificacionPersona))
             {
                 salida = "Ya existe un registro con ese mismo numero de identificacion. Por favor" +
                     " vuelva a intentarlo.";
-            }//fin if 
+            }//fin if
             else
             {
-                miListaEmpleado.Add(miObjetoEmpleado);
-                salida = "Se agrego el empleado correctamente";
+                SqlCommand comando = new SqlCommand();
+                string sentencia = " Insert	Into Empleado (Identificacion, Nombre, Primer_Apellido, " +
+                    "Segundo_Apellido, Salario, Usuario, Contrasena, Estado)" +
+                    " Values (@Identificacion, @Nombre, @Primer_Apellido, " +
+                    "@Segundo_Apellido,	@Salario, @Usuario, @Contrasena, @Estado)";
 
-            }//fin else 
+                comando.CommandType = CommandType.Text;
+                comando.CommandText = sentencia;
+                comando.Connection = cadenaConexion.conexion;
+                comando.Parameters.AddWithValue("@Identificacion", miObjetoEmpleado.IdentificacionPersona);
+                comando.Parameters.AddWithValue("@Nombre", miObjetoEmpleado.NombrePersona);
+                comando.Parameters.AddWithValue("@Primer_Apellido", miObjetoEmpleado.PrimerApellidoPersona);
+                comando.Parameters.AddWithValue("@Segundo_Apellido", miObjetoEmpleado.SegunoApellidoPersona);
+                comando.Parameters.AddWithValue("@Salario", miObjetoEmpleado.SalarioEmpleado);
+                comando.Parameters.AddWithValue("@Usuario", miObjetoEmpleado.UsuarioEmpleado);
+                comando.Parameters.AddWithValue("@Contrasena", miObjetoEmpleado.UsuarioContrasena);
+                comando.Parameters.AddWithValue("@Estado", miObjetoEmpleado.EstadoUsuario);
+
+                //abrir conexion
+                cadenaConexion.abrir();
+                comando.ExecuteNonQuery();
+                //cerrar conexion
+                cadenaConexion.cerrar();
+                salida = "Se agrego el empleado correctamente";
+            }//fin else
+
             return salida;
         }//fin RegistrarEmpleado
+
+        /*
+         * este metodo se encarga de devolver una lista de empleados
+         */
+        public List<ObjetoEmpleado> ObtenerMiLista()
+        {
+            //cargar miListaFinca desde base de datos
+            SqlCommand comando = new SqlCommand();
+            string sentencia = " Select Identificacion, Nombre, Primer_Apellido, " +
+                    "Segundo_Apellido, Salario, Usuario, Contrasena, Estado From Empleado ";
+            comando.CommandType = CommandType.Text;
+            comando.CommandText = sentencia;
+            comando.Connection = cadenaConexion.conexion;
+            //abrir conexion
+            cadenaConexion.abrir();
+            SqlDataReader lectorDatos = comando.ExecuteReader();
+            if (lectorDatos.HasRows == true)
+            {
+                while (lectorDatos.Read())
+                {
+                    miListaEmpleado.Add(new ObjetoEmpleado
+                    {
+                        IdentificacionPersona = Convert.ToInt32(lectorDatos["Identificacion"].ToString()),
+                        NombrePersona = lectorDatos["Nombre"].ToString(),
+                        PrimerApellidoPersona = lectorDatos["Primer_Apellido"].ToString(),
+                        SegunoApellidoPersona = lectorDatos["Segundo_Apellido"].ToString(),
+                        SalarioEmpleado = Convert.ToInt32(lectorDatos["Salario"].ToString()),
+                        UsuarioEmpleado = lectorDatos["Usuario"].ToString(),
+                        UsuarioContrasena = lectorDatos["Contrasena"].ToString(),
+                        EstadoUsuario = Convert.ToInt32(lectorDatos["Estado"].ToString())
+                    });
+                }//fin while
+            }//fin if
+            //cerrar conexion
+            cadenaConexion.cerrar();
+
+            return miListaEmpleado;
+
+        }//fin ObtenerMiLista
 
         /*
          * BuscarIdentificacionPersona = se encarga de verificar si existe o no un objeto empleado en 
          * el registro
          */
-        public static bool BuscarIdentificacionPersona(int identificacionEmpleado)
+        public bool BuscarIdentificacionPersona(int identificacionEmpleado)
         {
 
             bool encontrado = false;
@@ -63,7 +134,7 @@ namespace ProyectoMiFinca
         /*
          * GetObjetoEmpleado = devuelve un objeto Empleado con sus valores respectivos
          */
-        public static ObjetoEmpleado GetObjetoEmpleado(int identificacionPersona, string nombrePersona, string primerApellido, string segundoApellido,
+        public ObjetoEmpleado GetObjetoEmpleado(int identificacionPersona, string nombrePersona, string primerApellido, string segundoApellido,
             double salarioEmpleado, string usuario, string contrasena, int estado)
         {
             miObjetoEmpleado = new ObjetoEmpleado(identificacionPersona, nombrePersona, primerApellido, segundoApellido,

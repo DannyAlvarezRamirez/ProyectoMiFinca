@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProyectoMiFinca
+namespace Cliente
 {
     /*
          * esta clase se encarga de desplegar la interfaz de usuario para 

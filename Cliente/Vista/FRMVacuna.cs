@@ -8,39 +8,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProyectoMiFinca
+namespace Cliente
 {
     /*
          * esta clase se encarga de desplegar la interfaz de usuario para 
-         * que se registren vacunas de animales
+         * que se registren vacunas
          */
-    public partial class FRMVacunaAnimal : Form
+    public partial class FRMVacuna : Form
     {
-        //atributos y referencias
-        ControladorVacunaAnimal miControladorVacunaAnimal;
+        //atributos, referencias e instancias
+        ControladorFRMVacuna miControladorFRMVacuna;
 
-        //constructor
-        public FRMVacunaAnimal()
+        public FRMVacuna()
         {
             InitializeComponent();
-            miControladorVacunaAnimal = new ControladorVacunaAnimal();
+            miControladorFRMVacuna = new ControladorFRMVacuna();
         }//fin constructor
 
         /*
          * este metodo se encarga de, luego de dar click sobre el boton registrar, de registrar vacunas
-         * de animales en el sistema 
+         * en el sistema 
          */
         private void buttonRegistrar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (this.maskedTextBoxIdentificacionAnimal.Text != "" && this.maskedTextBoxIdentificacionVacuna.Text != "" &&
-                    this.maskedTextBoxFechaVacuna.Text != "" && this.textBoxEnfermedad.Text != "" &&
-                    this.textBoxObservaciones.Text != "")
+                if (this.maskedTextBoxIdentificacionVacuna.Text != "" && this.textBoxDescripcionVacuna.Text != "")
                 {
-                    MessageBox.Show(miControladorVacunaAnimal.RegistrarVacunaAnimal(miControladorVacunaAnimal.GetObjetoVacunaAnimal(
-                        Convert.ToInt32(this.maskedTextBoxIdentificacionAnimal.Text), Convert.ToInt32(this.maskedTextBoxIdentificacionVacuna.Text),
-                        this.maskedTextBoxFechaVacuna.Text, this.textBoxEnfermedad.Text, this.textBoxObservaciones.Text)));
+                    MessageBox.Show(miControladorFRMVacuna.RegistrarVacuna(miControladorFRMVacuna.GetObjetoVacuna(
+                        Convert.ToInt32(this.maskedTextBoxIdentificacionVacuna.Text), this.textBoxDescripcionVacuna.Text)));
                     //estado inicial
                     this.EstadoInicial();
                 }//fin if
@@ -58,19 +54,7 @@ namespace ProyectoMiFinca
         }//fin buttonRegistrar_Click
 
         /*
-         * este metodo se encarga de dejar la interfaza en su estado inicial
-         */
-        public void EstadoInicial()
-        {
-            this.maskedTextBoxIdentificacionAnimal.ResetText();
-            this.maskedTextBoxIdentificacionVacuna.ResetText();
-            this.maskedTextBoxFechaVacuna.ResetText();
-            this.textBoxEnfermedad.ResetText();
-            this.textBoxObservaciones.ResetText();
-        }//fin EstadoInicial
-
-        /*
-         * este metodo se encarga de esconder el formulario Registrar vacuna animal
+         * este metodo se encarga de esconder el formulario Registrar vacuna
          */
         private void buttonIrAlMenuPrincipal_Click(object sender, EventArgs e)
         {
@@ -80,10 +64,10 @@ namespace ProyectoMiFinca
         /*
          * este metodo se encarga de esconder el formulario actual
          */
-        private void FRMVacunaAnimal_Load(object sender, EventArgs e)
+        private void FRMVacuna_Load(object sender, EventArgs e)
         {
             this.FormClosed += new FormClosedEventHandler(cerrarFormulario);
-        }//fin FRMVacunaAnimal_Load
+        }//fin FRMVacuna_Load
 
         /*
          * este metodo se encarga de esconder el formulario actual  
@@ -93,5 +77,13 @@ namespace ProyectoMiFinca
             this.Hide();
         }//fin cerrarFormulario
 
-    }//fin clase FRMVacunaAnimal
+        /*
+         * este metodo se encarga de dejar la interfaza en su estado inicial
+         */
+        public void EstadoInicial()
+        {
+            this.maskedTextBoxIdentificacionVacuna.ResetText();
+            this.textBoxDescripcionVacuna.ResetText();
+        }//fin EstadoInicial
+    }//fin clase 
 }

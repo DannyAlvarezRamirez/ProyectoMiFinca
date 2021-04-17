@@ -33,14 +33,19 @@ namespace ProyectoMiFinca
         FRMListaAnimales miFRMListaAnimales;
         FRMVacuna miFRMVacuna;
         FRMListaVacunas miFRMListaVacunas;
+        FRMVacunaAnimal miFRMVacunaAnimal;
+        FRMListaVacunasAnimales miFRMListaVacunasAnimales;
         ////////////////////////////////////////////////////////////////////////////////////////
         //variables de comunicacion TCP del servidor
         TcpListener miTcpListener;
         Thread miThreadSubprocesoEscuchaCliente;
         bool miServidorEstaEscuchando;
-        //variable delegado
+        //variable delegado para cantidad de clientes conectados al servidor
         private delegate void cantidadClientesConectados(string salida);
         cantidadClientesConectados miCantidadClientesConectados;
+        //variables para las acciones de los Clientes Conectados al Servidor
+        //private delegate void accionesClientesConectados(string salida);
+        //accionesClientesConectados misAccionesClientesConectados;
 
         /*
          * constructor
@@ -50,12 +55,13 @@ namespace ProyectoMiFinca
             InitializeComponent();
             this.labelIniciarApagarServidor.ForeColor = Color.Red;
             this.miCantidadClientesConectados = new cantidadClientesConectados(CantidadClientesConectados);
+            //this.misAccionesClientesConectados = new accionesClientesConectados(AccionesClientesConectados);
         }//fin constructor
         
         /*
          * este metodo se encarga de establecer la conexion con el Cliente
          */
-        private void ComunicacionConCliente(Object paqueteCliente)
+        public void ComunicacionConCliente(Object paqueteCliente)
         {
             TcpClient miTcpCliente = (TcpClient)paqueteCliente;//paquete que envia el Cliente
             NetworkStream miNetworkStreamCliente = miTcpCliente.GetStream();
@@ -91,7 +97,7 @@ namespace ProyectoMiFinca
                 miTcpCliente.Close();
             }//fin while
 
-        }//fin 
+        }//fin ComunicacionConCliente
 
         /*
          * este metodo se encarga de escuchar al cliente
@@ -102,7 +108,7 @@ namespace ProyectoMiFinca
             //verificar que servidor esta iniciado
             while (miServidorEstaEscuchando)
             {
-                TcpClient tcpClient = miTcpListener.AcceptTcpClient();//genera error
+                TcpClient tcpClient = miTcpListener.AcceptTcpClient();//genera error, solucionar. OJO!!!!
                 Thread miThreadCliente = new Thread(new ParameterizedThreadStart(ComunicacionConCliente));
                 miThreadCliente.Start(tcpClient);
             }//fin while
@@ -117,6 +123,15 @@ namespace ProyectoMiFinca
             this.textBoxCantidadClientesConectados.Text = salida;
         }//fin CantidadClientesConectados
 
+        ///*
+        // * este metodo se encarga de desplegar en la interfaz de usuario 
+        // * las acciones de los Clientes conectados al Servidor
+        // */
+        //private void AccionesClientesConectados(string salida)
+        //{
+        //    this.textBoxAccionesClientes.Text += salida + "\n";
+        //}//fin AccionesClientesConectados
+
         /*
          * este metodo se encarga de iniciar el servidor
          */
@@ -129,7 +144,7 @@ namespace ProyectoMiFinca
             miThreadSubprocesoEscuchaCliente.Start();
             miThreadSubprocesoEscuchaCliente.IsBackground = true;
             miServidorEstaEscuchando = true;
-            labelIniciarApagarServidor.Text = "Escendido: IP = ANY / Puerto = 25000";
+            labelIniciarApagarServidor.Text = "Escendido: IP = 127.0.0.1 / Puerto = 25000";
             labelIniciarApagarServidor.ForeColor = Color.Green;
             buttonIniciarServidor.Enabled = false;
             buttonApagarServidor.Enabled = true;
@@ -291,6 +306,7 @@ namespace ProyectoMiFinca
             this.miFRMVacuna = new FRMVacuna();
             this.miFRMVacuna.Show();
         }//fin vacunaToolStripMenuItem_Click
+
         /*
          * este metodo se acciona al dar click sobre el menu strip mostrar vacunas
          * y se encarga de desplegar en una tabla la informacion de los registros
@@ -301,6 +317,27 @@ namespace ProyectoMiFinca
             this.miFRMListaVacunas = new FRMListaVacunas();
             this.miFRMListaVacunas.Show();
         }//fin vacunasToolStripMenuItem_Click
+
+        /*
+         * este metodo se acciona al dar click y despliega un nuevo formulario = Registrar Vacuna Animal
+         */
+        private void vacunaAnimaleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //instancia de formulario Registrar Vacuna
+            this.miFRMVacunaAnimal = new FRMVacunaAnimal();
+            this.miFRMVacunaAnimal.Show();
+        }//fin vacunaAnimaleToolStripMenuItem_Click
+
+        /*
+         * este metodo se acciona al dar click sobre el menu strip mostrar vacunas de animales
+         * y se encarga de desplegar en una tabla la informacion de los registros
+         * Vacunas de Animales
+         */
+        private void vacunasAnimalesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.miFRMListaVacunasAnimales = new FRMListaVacunasAnimales();
+            this.miFRMListaVacunasAnimales.Show();
+        }//fin vacunasAnimalesToolStripMenuItem_Click
 
     }//fin clase parcial MenuPrincipal
 }

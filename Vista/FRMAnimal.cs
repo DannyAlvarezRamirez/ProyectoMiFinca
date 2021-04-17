@@ -23,6 +23,7 @@ namespace ProyectoMiFinca
 
         public FRMAnimal()
         {
+            InitializeComponent();
             miControladorFRMFinca = new ControladorFRMFinca();
             miControladorFRMRaza = new ControladorFRMRaza();
             miControladorFRMAnimal = new ControladorFRMAnimal();
