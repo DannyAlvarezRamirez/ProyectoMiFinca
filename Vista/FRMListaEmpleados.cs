@@ -15,9 +15,13 @@ namespace ProyectoMiFinca
      */
     public partial class FRMListaEmpleados : Form
     {
+        //atributos y referencias
+        ControladorFRMEmpleado miControladorFRMEmpleado;
+
         public FRMListaEmpleados()
         {
             InitializeComponent();
+            miControladorFRMEmpleado = new ControladorFRMEmpleado();
             LlenarDataGridViewEmpleados();
         }//fin constructor
 
@@ -29,7 +33,7 @@ namespace ProyectoMiFinca
         {
             try
             {
-                this.dataGridViewEmpleados.DataSource = ControladorFRMEmpleado.miListaEmpleado;
+                this.dataGridViewEmpleados.DataSource = miControladorFRMEmpleado.ObtenerMiLista();
             }//fin try
             catch (Exception ex)
             {

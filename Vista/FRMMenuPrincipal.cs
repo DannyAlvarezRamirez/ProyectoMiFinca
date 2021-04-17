@@ -40,12 +40,8 @@ namespace ProyectoMiFinca
         TcpListener miTcpListener;
         Thread miThreadSubprocesoEscuchaCliente;
         bool miServidorEstaEscuchando;
-        //variable delegado para cantidad de clientes conectados al servidor
-        private delegate void cantidadClientesConectados(string salida);
-        cantidadClientesConectados miCantidadClientesConectados;
-        //variables para las acciones de los Clientes Conectados al Servidor
-        //private delegate void accionesClientesConectados(string salida);
-        //accionesClientesConectados misAccionesClientesConectados;
+        int clientesConectados;
+        string ultimoMensaje;
 
         /*
          * constructor
@@ -54,18 +50,19 @@ namespace ProyectoMiFinca
         {
             InitializeComponent();
             this.labelIniciarApagarServidor.ForeColor = Color.Red;
-            this.miCantidadClientesConectados = new cantidadClientesConectados(CantidadClientesConectados);
-            //this.misAccionesClientesConectados = new accionesClientesConectados(AccionesClientesConectados);
+            this.miServidorEstaEscuchando = false;
+            this.clientesConectados = 0;
+            this.ultimoMensaje = "";
         }//fin constructor
-        
+
         /*
          * este metodo se encarga de establecer la conexion con el Cliente
          */
-        public void ComunicacionConCliente(Object paqueteCliente)
+        private void ComunicacionConCliente(Object paqueteCliente)
         {
             TcpClient miTcpCliente = (TcpClient)paqueteCliente;//paquete que envia el Cliente
             NetworkStream miNetworkStreamCliente = miTcpCliente.GetStream();
-            ASCIIEncoding miASCIIEncodingCodificacion = new ASCIIEncoding();//para codificar los datos que entran por parametro
+            ASCIIEncoding miASCIIEncodingCodificacion = new ASCIIEncoding();//para decodificar los datos que entran por parametro
             byte[] miBuffer = new byte[4096];
             int cantidadDeBytes = 0;
 
@@ -78,7 +75,7 @@ namespace ProyectoMiFinca
                 }//fin try
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ha ocurrido un error en el Servidor." +
+                    MessageBox.Show("Servidor: Ha ocurrido un error en el Servidor." +
                         "/nDetalle del error: " + ex.Message);
                 }//fin catch
 
@@ -87,14 +84,14 @@ namespace ProyectoMiFinca
                     MessageBox.Show("No hay paquetes.");
                 }//fin if
 
-                //formateo del paquete
+                //decodificacion del paquete
                 string mensaje = miASCIIEncodingCodificacion.GetString(miBuffer, 0, cantidadDeBytes);
-                string mensajeFormateado = string.Format("El cliente {0} se ha conectado.", mensaje);
-                MessageBox.Show(mensajeFormateado);
+                //string mensajeFormateado = string.Format("El cliente {0} se ha conectado.", mensaje);
+                //MessageBox.Show(mensajeFormateado);
 
-                //modificacion del textbox mediante el delegado
-                this.textBoxCantidadClientesConectados.Invoke(this.miCantidadClientesConectados, new object[] { "Se ha conectado: " + mensaje });
-                miTcpCliente.Close();
+                //modificacion del textbox 
+                NombreClienteConectado("Se ha conectado: " + mensaje);
+                //miTcpCliente.Close();
             }//fin while
 
         }//fin ComunicacionConCliente
@@ -108,7 +105,12 @@ namespace ProyectoMiFinca
             //verificar que servidor esta iniciado
             while (miServidorEstaEscuchando)
             {
-                TcpClient tcpClient = miTcpListener.AcceptTcpClient();//genera error, solucionar. OJO!!!!
+                TcpClient tcpClient = miTcpListener.AcceptTcpClient();
+                lock (this)
+                {
+                    clientesConectados++;
+                    CantidadClienteConectados(clientesConectados);
+                }
                 Thread miThreadCliente = new Thread(new ParameterizedThreadStart(ComunicacionConCliente));
                 miThreadCliente.Start(tcpClient);
             }//fin while
@@ -118,19 +120,21 @@ namespace ProyectoMiFinca
          * este metodo se encarga de deplegar en el modulo Servidor la cantidad
          * de clientes conectados
          */
-        private void CantidadClientesConectados(string salida)
+        private void CantidadClienteConectados(int cantidad)//(string salida)
         {
-            this.textBoxCantidadClientesConectados.Text = salida;
+            //para evitar el error de no cruzar hilos se utiliza el metodo Invoke generico
+            this.labelICantidadClientesConectados.Invoke((MethodInvoker)(() => this.labelICantidadClientesConectados.Text = "Clientes Conectados: " + cantidad));
         }//fin CantidadClientesConectados
 
-        ///*
-        // * este metodo se encarga de desplegar en la interfaz de usuario 
-        // * las acciones de los Clientes conectados al Servidor
-        // */
-        //private void AccionesClientesConectados(string salida)
-        //{
-        //    this.textBoxAccionesClientes.Text += salida + "\n";
-        //}//fin AccionesClientesConectados
+        /*
+         * este metodo se encarga de deplegar en el modulo Servidor el nombre o identificacion
+         * del cliente conectado
+         */
+        private void NombreClienteConectado(string salida)//(string salida)
+        {
+            //para evitar el error de no cruzar hilos se utiliza el metodo Invoke generico
+            this.textBoxAccionesClientesConectados.Invoke((MethodInvoker)(() => this.textBoxAccionesClientesConectados.Text = salida));
+        }//fin NombreClienteConectado
 
         /*
          * este metodo se encarga de iniciar el servidor
@@ -160,7 +164,10 @@ namespace ProyectoMiFinca
             labelIniciarApagarServidor.ForeColor = Color.Red;
             buttonIniciarServidor.Enabled = true;
             buttonApagarServidor.Enabled = false;
+            this.labelICantidadClientesConectados.Text = "Clientes Conectados: ";
+            this.textBoxAccionesClientesConectados.ResetText();
             miTcpListener.Stop();
+            miThreadSubprocesoEscuchaCliente.Abort();
         }//fin buttonApagarServidor_Click
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -180,7 +187,7 @@ namespace ProyectoMiFinca
         private void cerrarFormulario(object sender, FormClosingEventArgs e)
         {
             //preguntar a usuario si desea cerrar la aplicacion
-            DialogResult respuesta = MessageBox.Show("Desea Salir de la Aplicacion", "Agroganadera Mi Finca",
+            DialogResult respuesta = MessageBox.Show("Desea Salir de la Aplicacion Servidor", "Agroganadera Mi Finca",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (respuesta == DialogResult.OK)

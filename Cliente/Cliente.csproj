@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controlador\ControladorFRMEmpleado.cs" />
+    <Compile Include="Controlador\ControladorFRMLogin.cs" />
     <Compile Include="Controlador\ControladorFRMVacuna.cs" />
     <Compile Include="Controlador\ControladorVacunaAnimal.cs" />
     <Compile Include="Modelo\ObjetoPersona.cs" />
@@ -73,6 +74,12 @@
     </Compile>
     <Compile Include="Vista\FRMListaVacunasAnimales.Designer.cs">
       <DependentUpon>FRMListaVacunasAnimales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\FRMLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\FRMLogin.Designer.cs">
+      <DependentUpon>FRMLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Vista\FRMVacuna.cs">
       <SubType>Form</SubType>
@@ -117,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\FRMListaVacunasAnimales.resx">
       <DependentUpon>FRMListaVacunasAnimales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\FRMLogin.resx">
+      <DependentUpon>FRMLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\FRMVacuna.resx">
       <DependentUpon>FRMVacuna.cs</DependentUpon>

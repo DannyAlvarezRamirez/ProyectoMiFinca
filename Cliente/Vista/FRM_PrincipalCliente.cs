@@ -13,6 +13,10 @@ using System.Threading;
 
 namespace Cliente
 {
+    /*
+     * esta clase se encarga de desplegar la interfaz para el usuario,
+     * el modulo Cliente.
+     */
     public partial class FRM_PrincipalCliente : Form
     {
         //atributos, referencias, instancias
@@ -22,15 +26,18 @@ namespace Cliente
         FRMListaVacunas miFRMListaVacunas;
         FRMVacunaAnimal miFRMVacunaAnimal;
         FRMListaVacunasAnimales miFRMListaVacunasAnimales;
-        bool clienteConectado;
+        FRMLogin miFRMLogin;
+        public static bool clienteConectado;
         TcpClient miTcpClient;
 
         //constructor
         public FRM_PrincipalCliente()
         {
             InitializeComponent();
-            this.labelEstadoConectadoDesconectado.ForeColor = Color.Red;
-            this.buttonDesconectarDelServidor.Enabled = false;
+            clienteConectado = false;
+            EstadoInterfaz(clienteConectado);
+            //this.labelEstadoConectadoDesconectado.ForeColor = Color.Red;
+            //this.buttonDesconectarDelServidor.Enabled = false;
         }//fin constructor
 
         //metodos
@@ -60,16 +67,21 @@ namespace Cliente
                     miNetworkStreamClient.Write(miBuffer, 0, miBuffer.Length);
                     miNetworkStreamClient.Flush();
                     //informacion en la interfaz
-                    labelEstadoConectadoDesconectado.Text = "Conectado al servidor";
-                    labelEstadoConectadoDesconectado.ForeColor = Color.Green;
+                    //labelEstadoConectadoDesconectado.Text = "Conectado al servidor";
+                    //labelEstadoConectadoDesconectado.ForeColor = Color.Green;
                     clienteConectado = true;
-                    buttonConectarAlServidor.Enabled = false;
-                    buttonDesconectarDelServidor.Enabled = true;
-                    textBoxIdentificadorDelCliente.ReadOnly = true;
+                    this.Hide();
+                    VerificarClienteLogeado(clienteConectado);
+                    //MessageBox.Show("Contenido del paquete enviado al Servidor: " + miNetworkStreamClient.ToString());
+                    //EstadoInterfaz(clienteConectado);
+                    //buttonConectarAlServidor.Enabled = false;
+                    //buttonDesconectarDelServidor.Enabled = true;
+                    //textBoxIdentificadorDelCliente.ReadOnly = true;
                 }//fin try
                 catch(SocketException ex)
                 {
-                    MessageBox.Show("Cliente: Ha ocurrido un error en la conexion con el servidor." +
+                    MessageBox.Show("Cliente: Ha ocurrido un error en la conexion con el servidor y/o" +
+                        "actualmente el servidor esta apagado." +
                         "\nDetalle del error: " + ex.Message);
                 }//fin catch
 
@@ -86,14 +98,60 @@ namespace Cliente
         private void buttonDesconectarDelServidor_Click(object sender, EventArgs e)
         {
             //informacion en la interfaz luego de cerrar la conexion con el servidor
-            labelEstadoConectadoDesconectado.Text = "Desconectado";
-            labelEstadoConectadoDesconectado.ForeColor = Color.Red;
+            //labelEstadoConectadoDesconectado.Text = "Desconectado";
+            //labelEstadoConectadoDesconectado.ForeColor = Color.Red;
             clienteConectado = false;
-            buttonConectarAlServidor.Enabled = true;
-            buttonDesconectarDelServidor.Enabled = false;
-            textBoxIdentificadorDelCliente.ReadOnly = false;
+            EstadoInterfaz(clienteConectado);
+            //buttonConectarAlServidor.Enabled = true;
+            //buttonDesconectarDelServidor.Enabled = false;
+            //textBoxIdentificadorDelCliente.ReadOnly = false;
             miTcpClient.Close();
         }//fin buttonDesconectarDelServidor_Click
+
+        /*
+         * este metodo se encarga de poner la interfaz en un estado predeterminado para
+         * que el usuario ingrese al sistema y pueda interactuar con la misma.
+         */
+        public void EstadoInterfaz(bool clienteConectado)
+        {
+            if (clienteConectado == true)
+            {
+                menuStrip1.Enabled = true;
+                buttonDesconectarDelServidor.Enabled = true;
+                buttonConectarAlServidor.Enabled = false;
+                textBoxIdentificadorDelCliente.ReadOnly = true;
+                labelEstadoConectadoDesconectado.Text = "Conectado al servidor";
+                labelEstadoConectadoDesconectado.ForeColor = Color.Green;
+            }//fin if
+            else
+            {
+                menuStrip1.Enabled = false;
+                buttonDesconectarDelServidor.Enabled = false;
+                buttonConectarAlServidor.Enabled = true;
+                textBoxIdentificadorDelCliente.ReadOnly = false;
+                labelEstadoConectadoDesconectado.Text = "Desconectado";
+                this.labelEstadoConectadoDesconectado.ForeColor = Color.Red;
+                this.buttonDesconectarDelServidor.Enabled = false;
+            }//fin else
+
+        }//fin EstadoInterfaz
+
+        /*
+         * este metodo se encarga de verificar que el cliente esta conectado,
+         * si lo esta entonces se puede logear, en caso contrario no.
+         */
+        public void VerificarClienteLogeado(bool clienteConectado)
+        {
+            miFRMLogin = new FRMLogin();
+            miFRMLogin.Show();
+
+            if (miFRMLogin.ClienteLogeado() == true)
+            {
+                miFRMLogin.Hide();
+                this.Show();
+            }//fin if
+        }//fin VerificarClienteLogeado
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /*
          * este metodo se acciona al dar click y despliega un nuevo formulario = Registrar Empleado
@@ -114,7 +172,7 @@ namespace Cliente
         {
             this.miFRMListaEmpleados = new FRMListaEmpleados();
             this.miFRMListaEmpleados.Show();
-        }//fin empleadosToolStripMenuItem1_Click
+        }//fin empleadosToolStripMenuItem_Click
 
         /*
          * este metodo se acciona al dar click y despliega un nuevo formulario = Registrar Vacuna
@@ -157,5 +215,33 @@ namespace Cliente
             this.miFRMListaVacunasAnimales = new FRMListaVacunasAnimales();
             this.miFRMListaVacunasAnimales.Show();
         }//fin vacunasAnimalesToolStripMenuItem_Click
+
+        /*
+         * este metodo se encarga cerrar o no la aplicacion
+         */
+        private void FRM_PrincipalCliente_Load(object sender, EventArgs e)
+        {
+            this.FormClosing += new FormClosingEventHandler(cerrarFormulario);
+        }//fin FRM_PrincipalCliente_Load
+
+        /*
+         * este metodo se encarga de cerrar o no el formulario actual 
+         */
+        private void cerrarFormulario(object sender, FormClosingEventArgs e)
+        {
+            //preguntar a usuario si desea cerrar la aplicacion
+            DialogResult respuesta = MessageBox.Show("Desea Salir de la Aplicacion Cliente", "Agroganadera Mi Finca",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (respuesta == DialogResult.OK)
+            {
+                this.Hide();
+            }//fin if cerrar
+            else
+            {
+                e.Cancel = true;
+            }//fin else cerrar
+        }//fin cerrarFormulario
+
     }//fin clase FRM_PrincipalCliente
 }

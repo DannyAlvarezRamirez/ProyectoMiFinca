@@ -40,7 +40,7 @@
             this.vacunaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vacunaAnimaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mostrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.empleadosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.empleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vacunasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vacunasAnimalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -130,52 +130,52 @@
             // empleadoToolStripMenuItem
             // 
             this.empleadoToolStripMenuItem.Name = "empleadoToolStripMenuItem";
-            this.empleadoToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.empleadoToolStripMenuItem.Size = new System.Drawing.Size(255, 34);
             this.empleadoToolStripMenuItem.Text = "Empleados";
             this.empleadoToolStripMenuItem.Click += new System.EventHandler(this.empleadoToolStripMenuItem_Click);
             // 
             // vacunaToolStripMenuItem
             // 
             this.vacunaToolStripMenuItem.Name = "vacunaToolStripMenuItem";
-            this.vacunaToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.vacunaToolStripMenuItem.Size = new System.Drawing.Size(255, 34);
             this.vacunaToolStripMenuItem.Text = "Vacunas";
             this.vacunaToolStripMenuItem.Click += new System.EventHandler(this.vacunaToolStripMenuItem_Click);
             // 
             // vacunaAnimaleToolStripMenuItem
             // 
             this.vacunaAnimaleToolStripMenuItem.Name = "vacunaAnimaleToolStripMenuItem";
-            this.vacunaAnimaleToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.vacunaAnimaleToolStripMenuItem.Size = new System.Drawing.Size(255, 34);
             this.vacunaAnimaleToolStripMenuItem.Text = "Vacunas Animales";
             this.vacunaAnimaleToolStripMenuItem.Click += new System.EventHandler(this.vacunaAnimaleToolStripMenuItem_Click);
             // 
             // mostrarToolStripMenuItem
             // 
             this.mostrarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.empleadosToolStripMenuItem1,
+            this.empleadosToolStripMenuItem,
             this.vacunasToolStripMenuItem,
             this.vacunasAnimalesToolStripMenuItem});
             this.mostrarToolStripMenuItem.Name = "mostrarToolStripMenuItem";
             this.mostrarToolStripMenuItem.Size = new System.Drawing.Size(173, 29);
             this.mostrarToolStripMenuItem.Text = "Mostrar la Lista de";
             // 
-            // empleadosToolStripMenuItem1
+            // empleadosToolStripMenuItem
             // 
-            this.empleadosToolStripMenuItem1.Name = "empleadosToolStripMenuItem1";
-            this.empleadosToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
-            this.empleadosToolStripMenuItem1.Text = "Empleados";
-            this.empleadosToolStripMenuItem1.Click += new System.EventHandler(this.empleadosToolStripMenuItem1_Click);
+            this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
+            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(255, 34);
+            this.empleadosToolStripMenuItem.Text = "Empleados";
+            this.empleadosToolStripMenuItem.Click += new System.EventHandler(this.empleadosToolStripMenuItem_Click);
             // 
             // vacunasToolStripMenuItem
             // 
             this.vacunasToolStripMenuItem.Name = "vacunasToolStripMenuItem";
-            this.vacunasToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.vacunasToolStripMenuItem.Size = new System.Drawing.Size(255, 34);
             this.vacunasToolStripMenuItem.Text = "Vacunas";
             this.vacunasToolStripMenuItem.Click += new System.EventHandler(this.vacunasToolStripMenuItem_Click);
             // 
             // vacunasAnimalesToolStripMenuItem
             // 
             this.vacunasAnimalesToolStripMenuItem.Name = "vacunasAnimalesToolStripMenuItem";
-            this.vacunasAnimalesToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.vacunasAnimalesToolStripMenuItem.Size = new System.Drawing.Size(255, 34);
             this.vacunasAnimalesToolStripMenuItem.Text = "Vacunas Animales";
             this.vacunasAnimalesToolStripMenuItem.Click += new System.EventHandler(this.vacunasAnimalesToolStripMenuItem_Click);
             // 
@@ -193,6 +193,7 @@
             this.Controls.Add(this.labelEstado);
             this.Name = "FRM_PrincipalCliente";
             this.Text = "Modulo Cliente";
+            this.Load += new System.EventHandler(this.FRM_PrincipalCliente_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -214,7 +215,7 @@
         private System.Windows.Forms.ToolStripMenuItem vacunaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vacunaAnimaleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mostrarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem empleadosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem empleadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vacunasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vacunasAnimalesToolStripMenuItem;
     }

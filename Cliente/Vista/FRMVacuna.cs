@@ -54,7 +54,7 @@ namespace Cliente
         }//fin buttonRegistrar_Click
 
         /*
-         * este metodo se encarga de esconder el formulario Registrar vacuna
+         * este metodo se encarga de esconder el formulario Registrar principal
          */
         private void buttonIrAlMenuPrincipal_Click(object sender, EventArgs e)
         {

@@ -16,9 +16,12 @@ namespace ProyectoMiFinca
      */
     public partial class FRMEmpleado : Form
     {
+        //atributos y referencias
+        ControladorFRMEmpleado miControladorFRMEmpleado;
         public FRMEmpleado()
         {
             InitializeComponent();
+            miControladorFRMEmpleado = new ControladorFRMEmpleado();
             this.EstadoInicial();
         }//fin constructor
 
@@ -34,7 +37,7 @@ namespace ProyectoMiFinca
                                 this.textBoxPrimerApellido.Text != "" && this.textBoxSegundoApellido.Text != "" &&
                                 this.maskedTextBoxSalario.Text != "")
                 {
-                    MessageBox.Show(ControladorFRMEmpleado.RegistrarEmpleado(ControladorFRMEmpleado.GetObjetoEmpleado(
+                    MessageBox.Show(miControladorFRMEmpleado.RegistrarEmpleado(miControladorFRMEmpleado.GetObjetoEmpleado(
                         Convert.ToInt32(this.maskedTextBoxIdentificacion.Text), this.textBoxNombre.Text,
                         this.textBoxPrimerApellido.Text, this.textBoxSegundoApellido.Text,
                         Convert.ToInt32(this.maskedTextBoxSalario.Text), this.textBoxUsuario.Text, this.textBoxContrasena.Text,
