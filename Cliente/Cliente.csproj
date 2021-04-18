@@ -49,7 +49,7 @@
     <Compile Include="Controlador\ControladorFRMEmpleado.cs" />
     <Compile Include="Controlador\ControladorFRMLogin.cs" />
     <Compile Include="Controlador\ControladorFRMVacuna.cs" />
-    <Compile Include="Controlador\ControladorVacunaAnimal.cs" />
+    <Compile Include="Controlador\ControladorFRMTratamientoAnimal.cs" />
     <Compile Include="Modelo\ObjetoPersona.cs" />
     <Compile Include="Vista\FRMEmpleado.cs">
       <SubType>Form</SubType>
@@ -69,11 +69,11 @@
     <Compile Include="Vista\FRMListaVacunas.Designer.cs">
       <DependentUpon>FRMListaVacunas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vista\FRMListaVacunasAnimales.cs">
+    <Compile Include="Vista\FRMListaTratamientoAnimales.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vista\FRMListaVacunasAnimales.Designer.cs">
-      <DependentUpon>FRMListaVacunasAnimales.cs</DependentUpon>
+    <Compile Include="Vista\FRMListaTratamientoAnimales.Designer.cs">
+      <DependentUpon>FRMListaTratamientoAnimales.cs</DependentUpon>
     </Compile>
     <Compile Include="Vista\FRMLogin.cs">
       <SubType>Form</SubType>
@@ -87,11 +87,11 @@
     <Compile Include="Vista\FRMVacuna.Designer.cs">
       <DependentUpon>FRMVacuna.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vista\FRMVacunaAnimal.cs">
+    <Compile Include="Vista\FRMTratamientoAnimal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vista\FRMVacunaAnimal.Designer.cs">
-      <DependentUpon>FRMVacunaAnimal.cs</DependentUpon>
+    <Compile Include="Vista\FRMTratamientoAnimal.Designer.cs">
+      <DependentUpon>FRMTratamientoAnimal.cs</DependentUpon>
     </Compile>
     <Compile Include="Vista\FRM_PrincipalCliente.cs">
       <SubType>Form</SubType>
@@ -101,7 +101,7 @@
     </Compile>
     <Compile Include="Modelo\ObjetoEmpleado.cs" />
     <Compile Include="Modelo\ObjetoVacunas.cs" />
-    <Compile Include="Modelo\ObjetoVacunaAnimal.cs" />
+    <Compile Include="Modelo\ObjetoTratamientoAnimal.cs" />
     <Compile Include="Controlador\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -122,8 +122,8 @@
     <EmbeddedResource Include="Vista\FRMListaVacunas.resx">
       <DependentUpon>FRMListaVacunas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vista\FRMListaVacunasAnimales.resx">
-      <DependentUpon>FRMListaVacunasAnimales.cs</DependentUpon>
+    <EmbeddedResource Include="Vista\FRMListaTratamientoAnimales.resx">
+      <DependentUpon>FRMListaTratamientoAnimales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\FRMLogin.resx">
       <DependentUpon>FRMLogin.cs</DependentUpon>
@@ -131,8 +131,8 @@
     <EmbeddedResource Include="Vista\FRMVacuna.resx">
       <DependentUpon>FRMVacuna.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vista\FRMVacunaAnimal.resx">
-      <DependentUpon>FRMVacunaAnimal.cs</DependentUpon>
+    <EmbeddedResource Include="Vista\FRMTratamientoAnimal.resx">
+      <DependentUpon>FRMTratamientoAnimal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\FRM_PrincipalCliente.resx">
       <DependentUpon>FRM_PrincipalCliente.cs</DependentUpon>

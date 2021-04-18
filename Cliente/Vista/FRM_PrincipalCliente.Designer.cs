@@ -31,7 +31,6 @@
             this.labelEstado = new System.Windows.Forms.Label();
             this.labelEstadoConectadoDesconectado = new System.Windows.Forms.Label();
             this.labelCliente = new System.Windows.Forms.Label();
-            this.textBoxIdentificadorDelCliente = new System.Windows.Forms.TextBox();
             this.buttonConectarAlServidor = new System.Windows.Forms.Button();
             this.buttonDesconectarDelServidor = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -43,6 +42,7 @@
             this.empleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vacunasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vacunasAnimalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comboBoxIdentificacionDelCliente = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,13 +73,6 @@
             this.labelCliente.TabIndex = 2;
             this.labelCliente.Text = "Cliente: ";
             // 
-            // textBoxIdentificadorDelCliente
-            // 
-            this.textBoxIdentificadorDelCliente.Location = new System.Drawing.Point(122, 82);
-            this.textBoxIdentificadorDelCliente.Name = "textBoxIdentificadorDelCliente";
-            this.textBoxIdentificadorDelCliente.Size = new System.Drawing.Size(116, 26);
-            this.textBoxIdentificadorDelCliente.TabIndex = 3;
-            // 
             // buttonConectarAlServidor
             // 
             this.buttonConectarAlServidor.BackColor = System.Drawing.SystemColors.Highlight;
@@ -106,7 +99,6 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.registrarToolStripMenuItem,
@@ -130,22 +122,22 @@
             // empleadoToolStripMenuItem
             // 
             this.empleadoToolStripMenuItem.Name = "empleadoToolStripMenuItem";
-            this.empleadoToolStripMenuItem.Size = new System.Drawing.Size(255, 34);
+            this.empleadoToolStripMenuItem.Size = new System.Drawing.Size(284, 34);
             this.empleadoToolStripMenuItem.Text = "Empleados";
             this.empleadoToolStripMenuItem.Click += new System.EventHandler(this.empleadoToolStripMenuItem_Click);
             // 
             // vacunaToolStripMenuItem
             // 
             this.vacunaToolStripMenuItem.Name = "vacunaToolStripMenuItem";
-            this.vacunaToolStripMenuItem.Size = new System.Drawing.Size(255, 34);
+            this.vacunaToolStripMenuItem.Size = new System.Drawing.Size(284, 34);
             this.vacunaToolStripMenuItem.Text = "Vacunas";
             this.vacunaToolStripMenuItem.Click += new System.EventHandler(this.vacunaToolStripMenuItem_Click);
             // 
             // vacunaAnimaleToolStripMenuItem
             // 
             this.vacunaAnimaleToolStripMenuItem.Name = "vacunaAnimaleToolStripMenuItem";
-            this.vacunaAnimaleToolStripMenuItem.Size = new System.Drawing.Size(255, 34);
-            this.vacunaAnimaleToolStripMenuItem.Text = "Vacunas Animales";
+            this.vacunaAnimaleToolStripMenuItem.Size = new System.Drawing.Size(284, 34);
+            this.vacunaAnimaleToolStripMenuItem.Text = "Tratamiento Animales";
             this.vacunaAnimaleToolStripMenuItem.Click += new System.EventHandler(this.vacunaAnimaleToolStripMenuItem_Click);
             // 
             // mostrarToolStripMenuItem
@@ -161,33 +153,47 @@
             // empleadosToolStripMenuItem
             // 
             this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
-            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(255, 34);
+            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(284, 34);
             this.empleadosToolStripMenuItem.Text = "Empleados";
             this.empleadosToolStripMenuItem.Click += new System.EventHandler(this.empleadosToolStripMenuItem_Click);
             // 
             // vacunasToolStripMenuItem
             // 
             this.vacunasToolStripMenuItem.Name = "vacunasToolStripMenuItem";
-            this.vacunasToolStripMenuItem.Size = new System.Drawing.Size(255, 34);
+            this.vacunasToolStripMenuItem.Size = new System.Drawing.Size(284, 34);
             this.vacunasToolStripMenuItem.Text = "Vacunas";
             this.vacunasToolStripMenuItem.Click += new System.EventHandler(this.vacunasToolStripMenuItem_Click);
             // 
             // vacunasAnimalesToolStripMenuItem
             // 
             this.vacunasAnimalesToolStripMenuItem.Name = "vacunasAnimalesToolStripMenuItem";
-            this.vacunasAnimalesToolStripMenuItem.Size = new System.Drawing.Size(255, 34);
-            this.vacunasAnimalesToolStripMenuItem.Text = "Vacunas Animales";
+            this.vacunasAnimalesToolStripMenuItem.Size = new System.Drawing.Size(284, 34);
+            this.vacunasAnimalesToolStripMenuItem.Text = "Tratamiento Animales";
             this.vacunasAnimalesToolStripMenuItem.Click += new System.EventHandler(this.vacunasAnimalesToolStripMenuItem_Click);
+            // 
+            // comboBoxIdentificacionDelCliente
+            // 
+            this.comboBoxIdentificacionDelCliente.FormattingEnabled = true;
+            this.comboBoxIdentificacionDelCliente.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.comboBoxIdentificacionDelCliente.Location = new System.Drawing.Point(122, 82);
+            this.comboBoxIdentificacionDelCliente.Name = "comboBoxIdentificacionDelCliente";
+            this.comboBoxIdentificacionDelCliente.Size = new System.Drawing.Size(121, 28);
+            this.comboBoxIdentificacionDelCliente.TabIndex = 7;
             // 
             // FRM_PrincipalCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBoxIdentificacionDelCliente);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.buttonDesconectarDelServidor);
             this.Controls.Add(this.buttonConectarAlServidor);
-            this.Controls.Add(this.textBoxIdentificadorDelCliente);
             this.Controls.Add(this.labelCliente);
             this.Controls.Add(this.labelEstadoConectadoDesconectado);
             this.Controls.Add(this.labelEstado);
@@ -206,7 +212,6 @@
         private System.Windows.Forms.Label labelEstado;
         private System.Windows.Forms.Label labelEstadoConectadoDesconectado;
         private System.Windows.Forms.Label labelCliente;
-        private System.Windows.Forms.TextBox textBoxIdentificadorDelCliente;
         private System.Windows.Forms.Button buttonConectarAlServidor;
         private System.Windows.Forms.Button buttonDesconectarDelServidor;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -218,6 +223,7 @@
         private System.Windows.Forms.ToolStripMenuItem empleadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vacunasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vacunasAnimalesToolStripMenuItem;
+        private System.Windows.Forms.ComboBox comboBoxIdentificacionDelCliente;
     }
 }
 

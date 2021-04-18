@@ -56,7 +56,7 @@ namespace Principal
          */
         private void buttonServidor_Click(object sender, EventArgs e)
         {
-            ProyectoMiFinca.FRMMenuPrincipal fRMMenuPrincipal = new ProyectoMiFinca.FRMMenuPrincipal();
+            FRMMenuPrincipal fRMMenuPrincipal = new FRMMenuPrincipal();
             fRMMenuPrincipal.Show();
         }//fin buttonServidor_Click
 
@@ -66,8 +66,8 @@ namespace Principal
          */
         private void buttonCliente_Click(object sender, EventArgs e)
         {
-            Cliente.FRM_PrincipalCliente fRM_PrincipalCliente = new Cliente.FRM_PrincipalCliente();
-            fRM_PrincipalCliente.Show();
+            FRMLogin fRMLogin = new FRMLogin();
+            fRMLogin.Show();
         }//fin buttonCliente_Click
 
     }//fin clase FRM_PrincipalAplicacion

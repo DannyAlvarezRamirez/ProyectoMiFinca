@@ -35,13 +35,14 @@ namespace ProyectoMiFinca
         FRMListaVacunas miFRMListaVacunas;
         FRMVacunaAnimal miFRMVacunaAnimal;
         FRMListaVacunasAnimales miFRMListaVacunasAnimales;
+        ConexionServidorBBDD miConexionServidorBBDD;
         ////////////////////////////////////////////////////////////////////////////////////////
         //variables de comunicacion TCP del servidor
         TcpListener miTcpListener;
         Thread miThreadSubprocesoEscuchaCliente;
         bool miServidorEstaEscuchando;
         int clientesConectados;
-        string ultimoMensaje;
+        string mensaje;
 
         /*
          * constructor
@@ -52,7 +53,8 @@ namespace ProyectoMiFinca
             this.labelIniciarApagarServidor.ForeColor = Color.Red;
             this.miServidorEstaEscuchando = false;
             this.clientesConectados = 0;
-            this.ultimoMensaje = "";
+            this.mensaje = "";
+            miConexionServidorBBDD = new ConexionServidorBBDD();
         }//fin constructor
 
         /*
@@ -60,7 +62,7 @@ namespace ProyectoMiFinca
          */
         private void ComunicacionConCliente(Object paqueteCliente)
         {
-            TcpClient miTcpCliente = (TcpClient)paqueteCliente;//paquete que envia el Cliente
+            TcpClient miTcpCliente = (TcpClient)paqueteCliente;//paquete que el Cliente envio
             NetworkStream miNetworkStreamCliente = miTcpCliente.GetStream();
             ASCIIEncoding miASCIIEncodingCodificacion = new ASCIIEncoding();//para decodificar los datos que entran por parametro
             byte[] miBuffer = new byte[4096];
@@ -82,19 +84,55 @@ namespace ProyectoMiFinca
                 if (cantidadDeBytes == 0)
                 {
                     MessageBox.Show("No hay paquetes.");
+                    break;
                 }//fin if
 
                 //decodificacion del paquete
-                string mensaje = miASCIIEncodingCodificacion.GetString(miBuffer, 0, cantidadDeBytes);
-                //string mensajeFormateado = string.Format("El cliente {0} se ha conectado.", mensaje);
-                //MessageBox.Show(mensajeFormateado);
+                this.mensaje = miASCIIEncodingCodificacion.GetString(miBuffer, 0, cantidadDeBytes);
+                MessageBox.Show("Este es el contenido del mensaje enviado " +
+                    "por el Cliente: " + mensaje);
 
-                //modificacion del textbox 
-                NombreClienteConectado("Se ha conectado: " + mensaje);
-                //miTcpCliente.Close();
+                //recibir el mensaje del cliente
+                RecibirMensaje(this.mensaje);
+                break;//prueba
+                
             }//fin while
 
         }//fin ComunicacionConCliente
+
+        /*
+         * este metodo  recibe un mensaje o paquete del Cliente
+         * y pregunta que tipo de mensaje es(consulta o nombre/identificacion de cliente)
+         */
+        private void RecibirMensaje(string mensaje)
+        {
+            try
+            {
+                if (mensaje.ToString() != "1" && mensaje.ToString() != "2" && mensaje.ToString() != "3" && mensaje.ToString() != "4" && mensaje.ToString() != "5")
+                {
+                    EnviarConsultaABaseDatos(mensaje);
+                }//fin if es consulta
+                else
+                {
+                    //modificacion del textbox 
+                    NombreClienteConectado(mensaje);
+                }//fin else if no es nombre cliente
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Servidor: Ha ocurrido un error en la conexion con el servidor." +
+                    "\nDetalle del error: " + ex.Message);
+            }//fin catch
+        }//fin RecibirMensaje
+
+        /*
+         * este metodo se encarga de enviar la consulta a la base de datos:
+         * select o insert 
+         */
+        private void EnviarConsultaABaseDatos(string consulta)
+        {
+            miConexionServidorBBDD.EnviarConsultaABaseDatos(consulta);
+        }//fin EnviarConsultaABaseDatos
 
         /*
          * este metodo se encarga de escuchar al cliente
@@ -106,21 +144,23 @@ namespace ProyectoMiFinca
             while (miServidorEstaEscuchando)
             {
                 TcpClient tcpClient = miTcpListener.AcceptTcpClient();
-                lock (this)
-                {
-                    clientesConectados++;
-                    CantidadClienteConectados(clientesConectados);
-                }
+                //movido lock
                 Thread miThreadCliente = new Thread(new ParameterizedThreadStart(ComunicacionConCliente));
                 miThreadCliente.Start(tcpClient);
             }//fin while
+            //prueba cantidad
+            lock (this)
+            {
+                clientesConectados++;
+                CantidadClienteConectados(clientesConectados);
+            }
         }//fin EscucharCliente
 
         /*
          * este metodo se encarga de deplegar en el modulo Servidor la cantidad
          * de clientes conectados
          */
-        private void CantidadClienteConectados(int cantidad)//(string salida)
+        private void CantidadClienteConectados(int cantidad)
         {
             //para evitar el error de no cruzar hilos se utiliza el metodo Invoke generico
             this.labelICantidadClientesConectados.Invoke((MethodInvoker)(() => this.labelICantidadClientesConectados.Text = "Clientes Conectados: " + cantidad));
@@ -133,7 +173,7 @@ namespace ProyectoMiFinca
         private void NombreClienteConectado(string salida)//(string salida)
         {
             //para evitar el error de no cruzar hilos se utiliza el metodo Invoke generico
-            this.textBoxAccionesClientesConectados.Invoke((MethodInvoker)(() => this.textBoxAccionesClientesConectados.Text = salida));
+            this.textBoxAccionesClientesConectados.Invoke((MethodInvoker)(() => this.textBoxAccionesClientesConectados.Text = "Se ha conectado: " + salida));
         }//fin NombreClienteConectado
 
         /*

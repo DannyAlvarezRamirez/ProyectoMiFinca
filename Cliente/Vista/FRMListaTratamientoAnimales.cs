@@ -11,40 +11,40 @@ using System.Windows.Forms;
 namespace Cliente
 {
     /*
-     * esta clase se encarga de desplegar los registros de vacunas
+     * esta clase se encarga de desplegar los registros de tratamientos
      */
-    public partial class FRMListaVacunasAnimales : Form
+    public partial class FRMListaTratamientoAnimales : Form
     {
         //atributos y referencias
-        ControladorVacunaAnimal miControladorFRMVacunaAnimal;
+        ControladorTratamientoAnimal miControladorFRMTratamientoAnimal;
 
-        public FRMListaVacunasAnimales()
+        public FRMListaTratamientoAnimales()
         {
             InitializeComponent();
-            miControladorFRMVacunaAnimal = new ControladorVacunaAnimal();
-            LlenarDataGridViewVacunas();
+            miControladorFRMTratamientoAnimal = new ControladorTratamientoAnimal();
+            LlenarDataGridViewTratamientos();
         }//fin constructor
 
         //metodos
         /*
-         * LlenarDataGridViewVacunas = este metodo se encarga de llenar el LlenarDataGridViewVacunas
-         * con sus respectivos registros de vacunas
+         * LlenarDataGridViewTratamientos = este metodo se encarga de llenar el LlenarDataGridViewTratamientos
+         * con sus respectivos registros de tratamientos
          */
-        public void LlenarDataGridViewVacunas()
+        public void LlenarDataGridViewTratamientos()
         {
             try
             {
-                this.dataGridViewVacunasAnimales.DataSource = miControladorFRMVacunaAnimal.ObtenerMiLista();
+                this.dataGridViewTratamientoAnimales.DataSource = miControladorFRMTratamientoAnimal.ObtenerMiLista();
             }//fin try
             catch (Exception ex)
             {
-                MessageBox.Show("Aun no hay vacunas de animales registradas.");
+                MessageBox.Show("Aun no hay tratamientos de animales registradas.");
             }//fin catch
-        }//fin LlenarDataGridViewVacunas
+        }//fin LlenarDataGridViewTratamientos
         /*
          * este metodo se encarga de esconder el formulario actual
          */
-        private void FRMListaVacunasAnimales_Load(object sender, EventArgs e)
+        private void FRMListaTratamientoAnimales_Load(object sender, EventArgs e)
         {
             this.FormClosed += new FormClosedEventHandler(cerrarFormulario);
         }//fin FRMListaVacunasAnimales_Load

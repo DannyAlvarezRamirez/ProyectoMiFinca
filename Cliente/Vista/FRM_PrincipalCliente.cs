@@ -24,20 +24,19 @@ namespace Cliente
         FRMListaEmpleados miFRMListaEmpleados;
         FRMVacuna miFRMVacuna;
         FRMListaVacunas miFRMListaVacunas;
-        FRMVacunaAnimal miFRMVacunaAnimal;
-        FRMListaVacunasAnimales miFRMListaVacunasAnimales;
-        FRMLogin miFRMLogin;
-        public static bool clienteConectado;
+        FRMTratamientoAnimal miFRMTratamientoAnimal;
+        FRMListaTratamientoAnimales miFRMListaTratamientoAnimales;
+        public bool clienteConectado;
         TcpClient miTcpClient;
 
-        //constructor
+        //constructores
         public FRM_PrincipalCliente()
         {
             InitializeComponent();
             clienteConectado = false;
             EstadoInterfaz(clienteConectado);
-            //this.labelEstadoConectadoDesconectado.ForeColor = Color.Red;
-            //this.buttonDesconectarDelServidor.Enabled = false;
+            this.labelEstadoConectadoDesconectado.ForeColor = Color.Red;
+            this.buttonDesconectarDelServidor.Enabled = false;
         }//fin constructor
 
         //metodos
@@ -47,8 +46,7 @@ namespace Cliente
          */
         private void buttonConectarAlServidor_Click(object sender, EventArgs e)
         {
-            //verificar que el identificador del cliente no este vacio
-            if (!string.IsNullOrEmpty(this.textBoxIdentificadorDelCliente.Text))
+            if(!string.IsNullOrEmpty(this.comboBoxIdentificacionDelCliente.Text))
             {
                 try
                 {
@@ -62,21 +60,13 @@ namespace Cliente
                     //mensaje que se va a enviar al servidor
                     NetworkStream miNetworkStreamClient = miTcpClient.GetStream();
                     ASCIIEncoding miCodificador = new ASCIIEncoding();
-                    byte[] miBuffer = miCodificador.GetBytes(textBoxIdentificadorDelCliente.Text);
+                    byte[] miBuffer = miCodificador.GetBytes(this.comboBoxIdentificacionDelCliente.Text);
                     //solicitud al servidor
                     miNetworkStreamClient.Write(miBuffer, 0, miBuffer.Length);
                     miNetworkStreamClient.Flush();
-                    //informacion en la interfaz
-                    //labelEstadoConectadoDesconectado.Text = "Conectado al servidor";
-                    //labelEstadoConectadoDesconectado.ForeColor = Color.Green;
                     clienteConectado = true;
-                    this.Hide();
-                    VerificarClienteLogeado(clienteConectado);
-                    //MessageBox.Show("Contenido del paquete enviado al Servidor: " + miNetworkStreamClient.ToString());
-                    //EstadoInterfaz(clienteConectado);
-                    //buttonConectarAlServidor.Enabled = false;
-                    //buttonDesconectarDelServidor.Enabled = true;
-                    //textBoxIdentificadorDelCliente.ReadOnly = true;
+                    EstadoInterfaz(clienteConectado);
+                    //VerificarClienteLogeado(clienteConectado);
                 }//fin try
                 catch(SocketException ex)
                 {
@@ -97,14 +87,8 @@ namespace Cliente
          */
         private void buttonDesconectarDelServidor_Click(object sender, EventArgs e)
         {
-            //informacion en la interfaz luego de cerrar la conexion con el servidor
-            //labelEstadoConectadoDesconectado.Text = "Desconectado";
-            //labelEstadoConectadoDesconectado.ForeColor = Color.Red;
             clienteConectado = false;
             EstadoInterfaz(clienteConectado);
-            //buttonConectarAlServidor.Enabled = true;
-            //buttonDesconectarDelServidor.Enabled = false;
-            //textBoxIdentificadorDelCliente.ReadOnly = false;
             miTcpClient.Close();
         }//fin buttonDesconectarDelServidor_Click
 
@@ -119,16 +103,15 @@ namespace Cliente
                 menuStrip1.Enabled = true;
                 buttonDesconectarDelServidor.Enabled = true;
                 buttonConectarAlServidor.Enabled = false;
-                textBoxIdentificadorDelCliente.ReadOnly = true;
                 labelEstadoConectadoDesconectado.Text = "Conectado al servidor";
                 labelEstadoConectadoDesconectado.ForeColor = Color.Green;
+                this.buttonConectarAlServidor.Enabled = false;
             }//fin if
             else
             {
                 menuStrip1.Enabled = false;
                 buttonDesconectarDelServidor.Enabled = false;
                 buttonConectarAlServidor.Enabled = true;
-                textBoxIdentificadorDelCliente.ReadOnly = false;
                 labelEstadoConectadoDesconectado.Text = "Desconectado";
                 this.labelEstadoConectadoDesconectado.ForeColor = Color.Red;
                 this.buttonDesconectarDelServidor.Enabled = false;
@@ -136,21 +119,6 @@ namespace Cliente
 
         }//fin EstadoInterfaz
 
-        /*
-         * este metodo se encarga de verificar que el cliente esta conectado,
-         * si lo esta entonces se puede logear, en caso contrario no.
-         */
-        public void VerificarClienteLogeado(bool clienteConectado)
-        {
-            miFRMLogin = new FRMLogin();
-            miFRMLogin.Show();
-
-            if (miFRMLogin.ClienteLogeado() == true)
-            {
-                miFRMLogin.Hide();
-                this.Show();
-            }//fin if
-        }//fin VerificarClienteLogeado
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /*
@@ -196,24 +164,24 @@ namespace Cliente
         }//fin vacunasToolStripMenuItem_Click
 
         /*
-         * este metodo se acciona al dar click y despliega un nuevo formulario = Registrar Vacuna Animal
+         * este metodo se acciona al dar click y despliega un nuevo formulario = Registrar Tratamiento Animal
          */
         private void vacunaAnimaleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //instancia de formulario Registrar Vacuna
-            this.miFRMVacunaAnimal = new FRMVacunaAnimal();
-            this.miFRMVacunaAnimal.Show();
+            //instancia de formulario Registrar tratamiento
+            this.miFRMTratamientoAnimal = new FRMTratamientoAnimal();
+            this.miFRMTratamientoAnimal.Show();
         }//fin vacunaAnimaleToolStripMenuItem_Click
 
         /*
          * este metodo se acciona al dar click sobre el menu strip mostrar vacunas de animales
          * y se encarga de desplegar en una tabla la informacion de los registros
-         * Vacunas de Animales
+         * Tratamientos de Animales
          */
         private void vacunasAnimalesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.miFRMListaVacunasAnimales = new FRMListaVacunasAnimales();
-            this.miFRMListaVacunasAnimales.Show();
+            this.miFRMListaTratamientoAnimales = new FRMListaTratamientoAnimales();
+            this.miFRMListaTratamientoAnimales.Show();
         }//fin vacunasAnimalesToolStripMenuItem_Click
 
         /*

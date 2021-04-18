@@ -15,33 +15,39 @@ namespace Cliente
 {
     /*
      * esta clase se encarga de controlar las funciones entre la vista y los formularios
-     * de vacuna
+     * de control de vacunas animal
      */
-    class ControladorFRMVacuna
+    class ControladorTratamientoAnimal
     {
+
         //atributos y referencias
         public int posicion;
-        public ObjetoVacunas miObjetoVacunas;
-        public static List<ObjetoVacunas> miListaVacunas;
+        public ObjetoTratamientoAnimal miObjetoTratamientoAnimal;
+        public static List<ObjetoTratamientoAnimal> miListaTratamientoAnimal;
         TcpClient miTcpClient;
 
-        //constructor
-        public ControladorFRMVacuna()
+        /*
+         * constructor
+         */
+        public ControladorTratamientoAnimal()
         {
-            miListaVacunas = new List<ObjetoVacunas>();
+            miListaTratamientoAnimal = new List<ObjetoTratamientoAnimal>();
         }//fin constructor
 
         //metodos
-
         /*
          * este metodo envia una cadena de string con una consulta 
          * para la base de datos
          */
-        public void EnviarConsulta(ObjetoVacunas miObjetoVacunas)
+        public void EnviarConsulta(ObjetoTratamientoAnimal objetoTratamientoAnimal)
         {
-            string mensaje = "Insert into Vacunas " +
-                "values(" + miObjetoVacunas.IdentificacionVacuna + ", '" +
-                miObjetoVacunas.DescripcionVacuna + "')";
+            string mensaje = "Insert into Tramientos " +
+                "values(" +  objetoTratamientoAnimal.IdentificacionAnimal + ", '" +
+                objetoTratamientoAnimal.Fecha + "', '" +
+                objetoTratamientoAnimal.DiagnosticoAnimal + "', '" +
+                objetoTratamientoAnimal.MedicamentoAnimal + "', " +
+                objetoTratamientoAnimal.DiasTratamiento + ", '" +
+                objetoTratamientoAnimal.ObservacionesAnimal + "')";
 
             try
             {
@@ -70,44 +76,45 @@ namespace Cliente
         }//fin EnviarConsulta
 
         /*
-         * este metodo se encarga de registrar objeto vacunas
+         * este metodo se encarga de registrar objeto tratamiento animal
          */
-        public string RegistrarVacuna(ObjetoVacunas miObjetoVacunas)
+        public string RegistrarTratamientoAnimal(ObjetoTratamientoAnimal miObjetoTratamientoAnimal)
         {
             string salida = "";
-            if (BuscarIdentificacionVacuna(miObjetoVacunas.IdentificacionVacuna))
+            if (BuscarIdentificacionTratamientoAnimal(miObjetoTratamientoAnimal.IdentificacionAnimal))
             {
                 salida = "Ya existe un registro con ese mismo numero de identificacion. Por favor" +
                     " vuelva a intentarlo.";
             }//fin if 
             else
             {
-                miListaVacunas.Add(miObjetoVacunas);
-                EnviarConsulta(miObjetoVacunas);
-                salida = "Se agrego la vacuna correctamente";
+                miListaTratamientoAnimal.Add(miObjetoTratamientoAnimal);
+                EnviarConsulta(miObjetoTratamientoAnimal);
+                salida = "Se agrego el tratamiento animal correctamente";
 
             }//fin else 
             return salida;
         }//fin RegistrarVacuna
 
         /*
-         * este metodo se encarga de devolver una lista de vacunas
+         * este metodo se encarga de devolver una lista de tratamiento animal
          */
-        public List<ObjetoVacunas> ObtenerMiLista()
+        public List<ObjetoTratamientoAnimal> ObtenerMiLista()
         {
-            //enviar solicitud al servidor con consulta para llenar el gridview vacunas
-            string mensaje = "Select Id_vacuna, Descripcion from Vacunas";
-            miListaVacunas = ObtenerListaDeBaseDatos(mensaje);
+            //enviar solicitud al servidor con consulta para llenar el gridview tratamientos
+            string mensaje = "Select Id_animal, Fec_tratamiento, Diagnostico, Medicamento, " +
+                "Dias_tratamiento, Observaciones from Tramientos";
+            miListaTratamientoAnimal = ObtenerListaDeBaseDatos(mensaje);
 
-            return miListaVacunas;
+            return miListaTratamientoAnimal;
         }//fin ObtenerMiLista
 
         /*
-         * este metodo se encarga de devolver una lista vacunas
+         * este metodo se encarga de devolver una lista tratamiento animal
          */
-        private List<ObjetoVacunas> ObtenerListaDeBaseDatos(string consulta)
+        private List<ObjetoTratamientoAnimal> ObtenerListaDeBaseDatos(string consulta)
         {
-            List<ObjetoVacunas> miLista = null;
+            List<ObjetoTratamientoAnimal> miLista = null;
             try
             {
                 //establecer conexion con el servidor
@@ -134,55 +141,59 @@ namespace Cliente
                     "\nDetalle del error: " + ex.Message);
             }//fin catch
             return miLista;
-        }//fin ObtenerListaDeBaseDatos
+        }//fin 
 
         /*
-         * BuscarIdentificacionVacuna = se encarga de verificar si existe o no un objeto vacuna en 
+         * BuscarIdentificacionTratamientoAnimal = se encarga de verificar si existe o no un objeto tratamiento animal en 
          * el registro
          */
-        public bool BuscarIdentificacionVacuna(int identificacionVacuna)
+        public bool BuscarIdentificacionTratamientoAnimal(int identificacionAnimal)
         {
 
             bool encontrado = false;
 
-            for (int i = 0; i < miListaVacunas.Count; i++)
+            for (int i = 0; i < miListaTratamientoAnimal.Count; i++)
             {
-                if (miListaVacunas.ElementAt(i).IdentificacionVacuna.Equals(identificacionVacuna))
+                if (miListaTratamientoAnimal.ElementAt(i).IdentificacionAnimal.Equals(identificacionAnimal))
                 {
                     encontrado = true;
-                    miObjetoVacunas = miListaVacunas.ElementAt(index: identificacionVacuna);//objetoVacuna
+                    miObjetoTratamientoAnimal = miListaTratamientoAnimal.ElementAt(index: identificacionAnimal);//objetoVacunaAnimal
                     posicion = i;
                 }//fin if verdad
             }//fin
 
             return encontrado;
 
-        }//fin BuscarIdentificacionVacuna
-        /*
-         * GetObjetoVacuna = devuelve un objeto Vacuna con sus valores respectivos
-         */
-        public ObjetoVacunas GetObjetoVacuna(int identificacionVacuna, string descripcionVacuna)
-        {
-            miObjetoVacunas = new ObjetoVacunas(identificacionVacuna, descripcionVacuna);
-            return miObjetoVacunas;
-        }//fin GetObjetoVacuna
+        }//fin BuscarIdentificacionTratamientoAnimal
 
         /*
-         * este metodo se encarga de buscar un objeto vacuna en especifico y devolverlo
+         * GetObjetoTratamientoAnimal = devuelve un objeto tratamiento animal con sus valores respectivos
          */
-        public ObjetoVacunas BuscarVacuna(int identificacion)
+        public ObjetoTratamientoAnimal GetObjetoTratamientoAnimal(int identificacionAnimal, int diasTratamiento,
+            string fecha, string diagnosticoAnimal, string observacionesAnimal, string medicamentoAnimal)
         {
-            ObjetoVacunas miObjetoVacunas = null;
-            for (int i = 0; i < ControladorFRMVacuna.miListaVacunas.Count; i++)
+            miObjetoTratamientoAnimal = new ObjetoTratamientoAnimal(identificacionAnimal, diasTratamiento,
+                fecha, diagnosticoAnimal, observacionesAnimal, medicamentoAnimal);
+            return miObjetoTratamientoAnimal;
+        }//fin GetObjetoTratamientoAnimal
+
+        /*
+         * este metodo se encarga de buscar un objeto tratamiento animal en especifico y devolverlo
+         */
+        public ObjetoTratamientoAnimal BuscarTratamientoAnimal(int identificacion)
+        {
+            ObjetoTratamientoAnimal miObjetoTratamientoAnimal = null;
+            for (int i = 0; i < miListaTratamientoAnimal.Count; i++)
             {
-                if (ControladorFRMVacuna.miListaVacunas.ElementAt(i).Equals(identificacion))
+                if (miListaTratamientoAnimal.ElementAt(i).Equals(identificacion))
                 {
-                    miObjetoVacunas = ControladorFRMVacuna.miListaVacunas.ElementAt(i);
+                    miObjetoTratamientoAnimal = miListaTratamientoAnimal.ElementAt(i);
                 }//fin if
             }//fin for
 
-            return miObjetoVacunas;
+            return miObjetoTratamientoAnimal;
 
-        }//fin BuscarVacuna
-    }//fin clase ControladorFRMVacuna
+        }//fin BuscarTratamientoAnimal
+
+    }//fin clase ControladorVacunaAnimal
 }

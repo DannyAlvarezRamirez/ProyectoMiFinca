@@ -61,8 +61,9 @@ namespace Cliente
         /*
          * este metodo se encarga de solicitar datos al servidor
          */
-        public void SolicitarDatosAlServidor(string usuario, string contrasena)
+        public int SolicitarDatosAlServidor(string usuario, string contrasena)
         {
+            int identificacion = 0;
             try
             {
                 //establecer conexion con el servidor
@@ -81,6 +82,7 @@ namespace Cliente
                 //solicitud al servidor
                 miNetworkStreamClient.Write(miBuffer, 0, miBuffer.Length);
                 miNetworkStreamClient.Flush();
+
                 //informacion en la interfaz
             }//fin try
             catch (SocketException ex)
@@ -88,6 +90,10 @@ namespace Cliente
                 MessageBox.Show("Cliente: Ha ocurrido un error en la conexion con el servidor." +
                     "\nDetalle del error: " + ex.Message);
             }//fin catch
+
+            identificacion = SolicitarDatosAlServidor(usuario, contrasena);
+            return identificacion;
         }//fin SolicitarDatosAlServidor
+
     }//fin clase ControladorFRMLogin
 }

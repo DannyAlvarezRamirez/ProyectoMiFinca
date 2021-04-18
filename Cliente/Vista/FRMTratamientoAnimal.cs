@@ -12,35 +12,35 @@ namespace Cliente
 {
     /*
          * esta clase se encarga de desplegar la interfaz de usuario para 
-         * que se registren vacunas de animales
+         * que se registren tratamiento de animales
          */
-    public partial class FRMVacunaAnimal : Form
+    public partial class FRMTratamientoAnimal : Form
     {
         //atributos y referencias
-        ControladorVacunaAnimal miControladorVacunaAnimal;
+        ControladorTratamientoAnimal miControladorTratamientoAnimal;
 
         //constructor
-        public FRMVacunaAnimal()
+        public FRMTratamientoAnimal()
         {
             InitializeComponent();
-            miControladorVacunaAnimal = new ControladorVacunaAnimal();
+            miControladorTratamientoAnimal = new ControladorTratamientoAnimal();
         }//fin constructor
 
         /*
-         * este metodo se encarga de, luego de dar click sobre el boton registrar, de registrar vacunas
+         * este metodo se encarga de, luego de dar click sobre el boton registrar, de registrar tratamientos
          * de animales en el sistema 
          */
         private void buttonRegistrar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (this.maskedTextBoxIdentificacionAnimal.Text != "" && this.maskedTextBoxIdentificacionVacuna.Text != "" &&
-                    this.maskedTextBoxFechaVacuna.Text != "" && this.textBoxEnfermedad.Text != "" &&
-                    this.textBoxObservaciones.Text != "")
+                if (this.maskedTextBoxIdentificacionAnimal.Text != "" && this.maskedTextBoxDiasTratamiento.Text != "" &&
+                    this.maskedTextBoxFecha.Text != "" && this.textBoxDiagnostico.Text != "" &&
+                    this.textBoxObservaciones.Text != "" && this.textBoxMedicamentos.Text != "")
                 {
-                    MessageBox.Show(miControladorVacunaAnimal.RegistrarVacunaAnimal(miControladorVacunaAnimal.GetObjetoVacunaAnimal(
-                        Convert.ToInt32(this.maskedTextBoxIdentificacionAnimal.Text), Convert.ToInt32(this.maskedTextBoxIdentificacionVacuna.Text),
-                        this.maskedTextBoxFechaVacuna.Text, this.textBoxEnfermedad.Text, this.textBoxObservaciones.Text)));
+                    MessageBox.Show(miControladorTratamientoAnimal.RegistrarTratamientoAnimal(miControladorTratamientoAnimal.GetObjetoTratamientoAnimal(
+                        Convert.ToInt32(this.maskedTextBoxIdentificacionAnimal.Text), Convert.ToInt32(this.maskedTextBoxDiasTratamiento.Text),
+                        this.maskedTextBoxFecha.Text, this.textBoxDiagnostico.Text, this.textBoxObservaciones.Text, this.textBoxMedicamentos.Text)));
                     //estado inicial
                     this.EstadoInicial();
                 }//fin if
@@ -63,14 +63,15 @@ namespace Cliente
         public void EstadoInicial()
         {
             this.maskedTextBoxIdentificacionAnimal.ResetText();
-            this.maskedTextBoxIdentificacionVacuna.ResetText();
-            this.maskedTextBoxFechaVacuna.ResetText();
-            this.textBoxEnfermedad.ResetText();
+            this.maskedTextBoxDiasTratamiento.ResetText();
+            this.maskedTextBoxFecha.ResetText();
+            this.textBoxDiagnostico.ResetText();
             this.textBoxObservaciones.ResetText();
+            this.textBoxMedicamentos.ResetText();
         }//fin EstadoInicial
 
         /*
-         * este metodo se encarga de esconder el formulario Registrar vacuna animal
+         * este metodo se encarga de esconder el formulario Registrar tratamiento animal
          */
         private void buttonIrAlMenuPrincipal_Click(object sender, EventArgs e)
         {
@@ -93,5 +94,5 @@ namespace Cliente
             this.Hide();
         }//fin cerrarFormulario
 
-    }//fin clase FRMVacunaAnimal
+    }//fin clase FRMTratamientoAnimal
 }

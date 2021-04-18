@@ -18,8 +18,9 @@ namespace Cliente
     {
         //atributos y referencias, instancias necesarias
         ControladorFRMLogin miControladorFRMLogin;
-        public static bool clienteLogeado;
+        //public static bool clienteLogeado;
         FRMEmpleado miFRMEmpleado;
+        FRM_PrincipalCliente miFRM_PrincipalCliente;
 
         //constructor
         public FRMLogin()
@@ -27,16 +28,16 @@ namespace Cliente
             InitializeComponent();
             this.labelIngresarYNoIngresar.ForeColor = Color.Red;
             miControladorFRMLogin = new ControladorFRMLogin();
-            clienteLogeado = false;
+            //clienteLogeado = false;
         }//fin constructor
 
         /*
          * este metodo devuelve el valor de la variable clienteLogeado
          */
-        public bool ClienteLogeado()
-        {
-            return clienteLogeado;
-        }//fin ClienteLogeado
+        //public bool ClienteLogeado()
+        //{
+        //    return clienteLogeado;
+        //}//fin ClienteLogeado
 
         /*
          * este metodo se encarga de esconder el formulario Registrar principal
@@ -68,14 +69,18 @@ namespace Cliente
          */
         private void buttonIngresar_Click(object sender, EventArgs e)
         {
-            if(miControladorFRMLogin.verificarDatosAcceso(this.textBoxUsuario.Text, this.textBoxContrasena.Text).Equals("Bienvenido"))
+            if(miControladorFRMLogin.SolicitarDatosAlServidor(this.textBoxUsuario.Text, this.textBoxContrasena.Text).Equals("Bienvenido"))
             {
                 MessageBox.Show("Bienvenido al sistema.");
-                clienteLogeado = true;
+                this.Hide();
+                miFRM_PrincipalCliente = new FRM_PrincipalCliente();
+                miFRM_PrincipalCliente.Show();
+                //clienteLogeado = true;
+
             }//fin if
             else
             {
-                MessageBox.Show(miControladorFRMLogin.verificarDatosAcceso(this.textBoxUsuario.Text, this.textBoxContrasena.Text));
+                MessageBox.Show("Uno o varios valores no coinciden o debe registrarse.");
             }//fin else
             
         }//fin buttonIngresar_Click
