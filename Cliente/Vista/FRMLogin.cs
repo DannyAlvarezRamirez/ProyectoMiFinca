@@ -69,7 +69,9 @@ namespace Cliente
          */
         private void buttonIngresar_Click(object sender, EventArgs e)
         {
-            if(miControladorFRMLogin.SolicitarDatosAlServidor(this.textBoxUsuario.Text, this.textBoxContrasena.Text).Equals("Bienvenido"))
+            //if(miControladorFRMLogin.SolicitarDatosAlServidor(this.textBoxUsuario.Text, this.textBoxContrasena.Text).Equals("Bienvenido"))
+            //para poder visualizar modulo Cliente al menos
+            if(true)
             {
                 MessageBox.Show("Bienvenido al sistema.");
                 this.Hide();

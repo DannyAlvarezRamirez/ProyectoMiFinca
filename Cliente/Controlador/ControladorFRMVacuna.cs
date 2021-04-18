@@ -125,7 +125,7 @@ namespace Cliente
                 miNetworkStreamClient.Write(miBuffer, 0, miBuffer.Length);
                 miNetworkStreamClient.Flush();
 
-                miLista = ObtenerListaDeBaseDatos(consulta);
+                //miLista = ObtenerListaDeBaseDatos(consulta);
                 miTcpClient.Close();
             }//fin try
             catch (SocketException ex)

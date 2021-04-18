@@ -82,7 +82,7 @@ namespace Cliente
                 //solicitud al servidor
                 miNetworkStreamClient.Write(miBuffer, 0, miBuffer.Length);
                 miNetworkStreamClient.Flush();
-
+                //miTcpClient.Close();
                 //informacion en la interfaz
             }//fin try
             catch (SocketException ex)
@@ -91,7 +91,7 @@ namespace Cliente
                     "\nDetalle del error: " + ex.Message);
             }//fin catch
 
-            identificacion = SolicitarDatosAlServidor(usuario, contrasena);
+            //identificacion = SolicitarDatosAlServidor(usuario, contrasena);
             return identificacion;
         }//fin SolicitarDatosAlServidor
 
